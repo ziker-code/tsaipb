@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ImagePlus, Loader2, Trash2 } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { uploadImage } from "@/lib/admin/image";
 
 /** Upload satu gambar (cover). URL hasil upload disimpan di hidden input `name`. */
@@ -39,13 +39,13 @@ export function ImageField({ name, label, defaultValue, folder }: { name: string
                 Ganti
               </button>
               <button type="button" onClick={() => setUrl("")} aria-label="Hapus gambar" className="grid size-8 place-items-center rounded-lg bg-white/90 text-red-600 shadow">
-                <Trash2 className="size-4" />
+                <Icon name="trash-outline" className="size-4" />
               </button>
             </div>
           </div>
         ) : (
           <button type="button" onClick={() => inputRef.current?.click()} disabled={busy} className="flex aspect-video w-full flex-col items-center justify-center gap-2 text-muted hover:bg-brand-50">
-            {busy ? <Loader2 className="size-6 animate-spin" /> : <ImagePlus className="size-6" />}
+            {busy ? <Icon name="sync" className="size-6 animate-spin" /> : <Icon name="image-outline" className="size-6" />}
             <span className="text-xs font-normal">{busy ? "Mengunggah…" : "Klik untuk unggah gambar (otomatis dikompres)"}</span>
           </button>
         )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { CheckCircle2, Send } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { sendContact, type ContactState } from "./actions";
 import { cn } from "@/lib/cn";
 
@@ -17,8 +17,8 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div role="status" className="rounded-[var(--radius-card)] bg-brand-50 p-8 text-center">
-        <CheckCircle2 className="mx-auto size-12 text-brand-600" aria-hidden="true" />
-        <p className="mt-4 font-display text-xl font-bold text-brand-800">Pesan terkirim</p>
+        <Icon name="checkmark-circle" className="mx-auto size-12 text-brand-600" aria-hidden="true" />
+        <p className="mt-4 text-xl font-medium text-brand-800">Pesan terkirim</p>
         <p className="mt-2 text-muted">{state.message ?? "Terima kasih telah menghubungi kami."}</p>
       </div>
     );
@@ -77,9 +77,9 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center justify-center gap-2 justify-self-start rounded-xl bg-brand-700 px-6 py-3 font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 justify-self-start rounded-full bg-brand-700 px-6 py-3 font-medium text-white hover:bg-brand-800 disabled:opacity-60"
       >
-        <Send className="size-4" aria-hidden="true" />
+        <Icon name="send" className="size-4" aria-hidden="true" />
         {pending ? "Mengirim…" : "Kirim Pesan"}
       </button>
     </form>

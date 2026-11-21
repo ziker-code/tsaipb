@@ -13,8 +13,10 @@ export const site = {
       href: "https://www.linkedin.com/company/tanoto-scholars-association-ipb",
     },
     line: { label: "@ogh5044d", href: "https://line.me/R/ti/p/@ogh5044d" },
+    // Isi bila akun TikTok resmi sudah dikonfirmasi, mis. { label: "@tsaipb", href: "https://www.tiktok.com/@tsaipb" }
+    tiktok: null as { label: string; href: string } | null,
   },
-} as const;
+};
 
 export const navItems = [
   { label: "Beranda", href: "/" },

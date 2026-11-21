@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { requireAdmin } from "@/lib/admin/auth";
 import { AdminPageHeader } from "@/components/admin/page-header";
 import type { Division } from "@/lib/types";
@@ -24,7 +24,7 @@ export default async function EditProgramPage({ params }: PageProps<"/admin/prog
         back={{ href: "/admin/program", label: "Kembali ke daftar" }}
         actions={
           <Link href={`/program/${program.slug}`} target="_blank" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:underline">
-            <ExternalLink className="size-4" aria-hidden="true" /> Lihat di website
+            <Icon name="open-outline" className="size-4" aria-hidden="true" /> Lihat di website
           </Link>
         }
       />

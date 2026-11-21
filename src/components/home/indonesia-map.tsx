@@ -11,19 +11,22 @@ export function IndonesiaMap() {
         {indonesia.locations.map((loc) => (
           <path
             key={loc.id}
-            id={loc.id}
             d={loc.path}
-            className={loc.id === "id-jb" ? "fill-gold-500" : "fill-white/90"}
-            stroke="#006838"
+            className={
+              loc.id === "id-jb"
+                ? "fill-gold-500"
+                : "fill-white/85 transition-[fill] duration-500 hover:fill-gold-300"
+            }
+            stroke="#00663d"
             strokeWidth="0.6"
-          />
+          >
+            <title>{loc.name}</title>
+          </path>
         ))}
-        <g transform={`translate(${BOGOR.x} ${BOGOR.y})`}>
-          <circle r="14" className="fill-gold-300/40">
-            <animate attributeName="r" values="6;16;6" dur="2.4s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.9;0;0.9" dur="2.4s" repeatCount="indefinite" />
-          </circle>
-          <circle r="5" className="fill-white" stroke="#b9a56b" strokeWidth="2.5" />
+        <g transform={`translate(${BOGOR.x} ${BOGOR.y})`} aria-hidden="true">
+          <circle r="7" className="origin-center animate-pulse-ring fill-gold-300 [transform-box:fill-box]" />
+          <circle r="7" className="origin-center animate-pulse-ring fill-gold-300 [animation-delay:1.2s] [transform-box:fill-box]" />
+          <circle r="4.5" className="fill-white" stroke="#b5a66c" strokeWidth="2.5" />
         </g>
       </svg>
       <figcaption className="sr-only">Lokasi: IPB University, Dramaga, Bogor, Jawa Barat.</figcaption>

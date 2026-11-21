@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EyeOff, Pencil, Plus, Star } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { requireAdmin } from "@/lib/admin/auth";
 import { AdminPageHeader } from "@/components/admin/page-header";
 import { DeleteButton } from "@/components/admin/delete-button";
@@ -25,7 +25,7 @@ export default async function AdminProgramsPage() {
         description={`${list.length} program · ${featuredCount} unggulan (Beranda menampilkan maks. 3). Program tanpa deskripsi ditandai “perlu deskripsi”.`}
         actions={
           <Link href="/admin/program/baru" className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-800">
-            <Plus className="size-4" aria-hidden="true" /> Program baru
+            <Icon name="add" className="size-4" aria-hidden="true" /> Program baru
           </Link>
         }
       />
@@ -51,17 +51,17 @@ export default async function AdminProgramsPage() {
                     </Link>
                     {p.is_featured && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2.5 py-0.5 text-xs font-semibold text-gold-600">
-                        <Star className="size-3" aria-hidden="true" /> Unggulan
+                        <Icon name="star" className="size-3" aria-hidden="true" /> Unggulan
                       </span>
                     )}
                     {!p.is_published && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-canvas px-2.5 py-0.5 text-xs font-semibold text-muted">
-                        <EyeOff className="size-3" aria-hidden="true" /> Disembunyikan
+                        <Icon name="eye-off-outline" className="size-3" aria-hidden="true" /> Disembunyikan
                       </span>
                     )}
                     {!p.content && <span className="rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-red-600">perlu deskripsi</span>}
                     <Link href={`/admin/program/${p.id}`} aria-label={`Edit ${p.title}`} className="rounded-lg p-2 text-brand-700 hover:bg-brand-50">
-                      <Pencil className="size-4" />
+                      <Icon name="create-outline" className="size-4" />
                     </Link>
                     <DeleteButton action={deleteProgram} id={p.id} confirmText={`Hapus program "${p.title}"? Foto galeri yang ditandai ke program ini tetap ada.`} />
                   </li>

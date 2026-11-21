@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { BackToTop } from "@/components/back-to-top";
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
@@ -15,6 +16,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
         {children}
       </main>
       <SiteFooter />
+      <BackToTop />
     </>
   );
 }

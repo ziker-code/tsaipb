@@ -1,72 +1,106 @@
+import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { Reveal } from "./motion/reveal";
+import { LineReveal } from "./motion/text";
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6", className)}>{children}</div>;
+  return <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}>{children}</div>;
 }
 
-/** Hero kecil untuk halaman selain Beranda (judul hijau + subjudul emas, mengikuti Figma). */
-export function PageHero({ title, subtitle = "TSA IPB 2026 | Berdaya Berkarya Digdaya", children }: { title: string; subtitle?: string; children?: ReactNode }) {
+/** Hero halaman dalam: hijau, judul tipis besar, watermark logo di kanan. */
+export function PageHero({ title, subtitle = "TSA IPB 2026 · Berdaya, Berkarya, Digdaya", children }: { title: string; subtitle?: string; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-brand-700 pb-16 pt-32 text-center text-white sm:pt-36">
-      <Contours />
+    <section className="relative overflow-hidden rounded-b-[2.5rem] bg-brand-700 pb-16 pt-36 text-white sm:pb-20 sm:pt-44">
+      <BrandWatermark />
       <Container className="relative">
-        <h1 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-5xl">{title}</h1>
-        <p className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-gold-300">{subtitle}</p>
+        <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-300">{subtitle}</p>
+        <h1 className="mt-4 max-w-3xl text-4xl font-light leading-[1.05] sm:text-6xl">
+          <LineReveal lines={[title]} />
+        </h1>
         {children}
       </Container>
     </section>
   );
 }
 
-export function SectionHeading({ eyebrow, title, description, align = "left", className }: { eyebrow?: string; title: string; description?: string; align?: "left" | "center"; className?: string }) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  className,
+  tone = "dark",
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  className?: string;
+  tone?: "dark" | "light";
+}) {
   return (
-    <div className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
-      {eyebrow && <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">{eyebrow}</p>}
-      <h2 className="mt-1 font-display text-2xl font-extrabold text-brand-800 sm:text-3xl">{title}</h2>
-      {description && <p className="mt-2 text-muted">{description}</p>}
-    </div>
+    <Reveal className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
+      {eyebrow && <p className={cn("text-xs font-medium uppercase tracking-[0.25em]", tone === "dark" ? "text-gold-600" : "text-gold-300")}>{eyebrow}</p>}
+      <h2 className={cn("mt-3 text-3xl font-light leading-tight sm:text-[2.6rem]", tone === "dark" ? "text-brand-900" : "text-white")}>{title}</h2>
+      {description && <p className={cn("mt-3 max-w-xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
+    </Reveal>
   );
 }
 
 export function EmptyState({ title, description }: { title: string; description?: string }) {
   return (
-    <div className="rounded-[var(--radius-card)] border border-dashed border-brand-100 bg-brand-50 px-6 py-12 text-center">
-      <p className="font-display font-bold text-brand-800">{title}</p>
+    <div className="rounded-[var(--radius-card)] border border-dashed border-line bg-canvas px-6 py-14 text-center">
+      <p className="font-medium text-brand-900">{title}</p>
       {description && <p className="mt-1 text-sm text-muted">{description}</p>}
     </div>
   );
 }
 
-export function Pill({ children, className }: { children: ReactNode; className?: string }) {
+export function Pill({ children, className, style }: { children: ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
-    <span className={cn("inline-block rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-600", className)}>
+    <span style={style} className={cn("inline-flex items-center gap-1.5 rounded-full bg-gold-100 px-3 py-1 text-xs font-medium text-gold-600", className)}>
       {children}
     </span>
   );
 }
 
-/** Ornamen garis kontur (seperti di desain IG TSA IPB). Dekoratif. */
-export function Contours({ className }: { className?: string }) {
+/** Watermark mark logo TSA IPB, sangat samar, untuk latar hijau. Dekoratif. */
+export function BrandWatermark({ className }: { className?: string }) {
   return (
-    <svg
+    <Image
+      src="/brand/logo-mark.webp"
+      alt=""
       aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0 h-full w-full opacity-[0.12]", className)}
-      preserveAspectRatio="xMidYMid slice"
-      viewBox="0 0 800 400"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    >
-      {Array.from({ length: 9 }, (_, i) => (
-        <path
-          key={i}
-          d={`M-50 ${60 + i * 38} C 120 ${10 + i * 40}, 240 ${130 + i * 34}, 400 ${70 + i * 38} S 680 ${20 + i * 42}, 860 ${90 + i * 36}`}
-        />
-      ))}
-      <circle cx="680" cy="80" r="40" />
-      <circle cx="680" cy="80" r="65" />
-      <circle cx="680" cy="80" r="90" />
-    </svg>
+      width={320}
+      height={600}
+      className={cn("pointer-events-none absolute -right-10 top-10 h-[130%] w-auto select-none opacity-[0.07] mix-blend-luminosity sm:right-8", className)}
+    />
+  );
+}
+
+/** @deprecated nama lama; dipertahankan agar import lama tetap jalan. */
+export const Contours = BrandWatermark;
+
+/** Tautan bergaya tombol. */
+export function ButtonLink({ href, children, variant = "solid", className, external }: { href: string; children: ReactNode; variant?: "solid" | "outline" | "light" | "ghost"; className?: string; external?: boolean }) {
+  const styles = {
+    solid: "bg-brand-700 text-white hover:bg-brand-800",
+    outline: "border border-white/50 text-white hover:bg-white hover:text-brand-800",
+    light: "bg-white text-brand-800 hover:bg-gold-100",
+    ghost: "border border-brand-700/20 text-brand-800 hover:border-brand-700 hover:bg-brand-700 hover:text-white",
+  }[variant];
+  const cls = cn("group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-300", styles, className);
+  if (external)
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+        {children}
+      </a>
+    );
+  return (
+    <Link href={href} className={cls}>
+      {children}
+    </Link>
   );
 }

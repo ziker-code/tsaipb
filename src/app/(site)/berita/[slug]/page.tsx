@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CalendarDays, UserRound } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { getLatestPosts, getPost, getPosts } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { Markdown } from "@/components/markdown";
@@ -39,19 +39,19 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
         <Contours />
         <Container className="relative max-w-3xl">
           <Link href="/berita" className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-white">
-            <ArrowLeft className="size-4" aria-hidden="true" /> Semua berita
+            <Icon name="arrow-back" className="size-4" aria-hidden="true" /> Semua berita
           </Link>
           <div className="mt-6">
             <Pill className="bg-white/15 text-gold-300">{post.category}</Pill>
           </div>
-          <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">{post.title}</h1>
+          <h1 className="mt-3 text-3xl font-light leading-tight sm:text-4xl">{post.title}</h1>
           <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-white/80">
             <span className="inline-flex items-center gap-1.5">
-              <CalendarDays className="size-4" aria-hidden="true" /> {formatDate(post.published_at)}
+              <Icon name="calendar-outline" className="size-4" aria-hidden="true" /> {formatDate(post.published_at)}
             </span>
             {post.author && (
               <span className="inline-flex items-center gap-1.5">
-                <UserRound className="size-4" aria-hidden="true" /> {post.author}
+                <Icon name="person-outline" className="size-4" aria-hidden="true" /> {post.author}
               </span>
             )}
           </p>

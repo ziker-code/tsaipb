@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, Loader2, Upload } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { Field, inputCls } from "@/components/admin/form";
 import { uploadImage } from "@/lib/admin/image";
 import type { Division, Program } from "@/lib/types";
@@ -100,7 +100,7 @@ export function GalleryUploader({ divisions, programs }: { divisions: Division[]
 
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-100 bg-canvas px-4 py-2.5 text-sm font-semibold text-brand-800 hover:bg-brand-50">
-          <Upload className="size-4" aria-hidden="true" />
+          <Icon name="cloud-upload-outline" className="size-4" aria-hidden="true" />
           {files.length ? `${files.length} foto dipilih` : "Pilih foto"}
           <input ref={fileRef} type="file" accept="image/*" multiple className="sr-only" onChange={(e) => setFiles(Array.from(e.target.files ?? []))} />
         </label>
@@ -110,7 +110,7 @@ export function GalleryUploader({ divisions, programs }: { divisions: Division[]
           disabled={!files.length || busy}
           className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-50"
         >
-          {busy && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
+          {busy && <Icon name="sync" className="size-4 animate-spin" aria-hidden="true" />}
           {busy ? `Mengunggah ${status?.done ?? 0}/${status?.total ?? 0}…` : "Unggah"}
         </button>
       </div>
@@ -118,7 +118,7 @@ export function GalleryUploader({ divisions, programs }: { divisions: Division[]
       <div aria-live="polite" className="mt-3 text-sm">
         {!busy && status && status.done > 0 && (
           <p className="flex items-center gap-2 text-brand-700">
-            <CheckCircle2 className="size-4" aria-hidden="true" /> {status.done - status.failed.length} foto berhasil diunggah.
+            <Icon name="checkmark-circle" className="size-4" aria-hidden="true" /> {status.done - status.failed.length} foto berhasil diunggah.
           </p>
         )}
         {status?.failed.length ? <p className="text-red-600">Gagal: {status.failed.join(", ")}</p> : null}

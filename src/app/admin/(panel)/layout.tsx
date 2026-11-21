@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Loader2 } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { AdminNav } from "./admin-nav";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
         <Suspense
           fallback={
             <div className="grid min-h-[50vh] place-items-center text-muted">
-              <Loader2 className="size-6 animate-spin" aria-label="Memuat" />
+              <Icon name="sync" className="size-6 animate-spin" aria-label="Memuat" />
             </div>
           }
         >

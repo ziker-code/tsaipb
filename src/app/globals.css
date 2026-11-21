@@ -5,32 +5,68 @@
  * Ganti nilai hex di sini bila brand guideline final berbeda.
  */
 @theme {
-  --color-brand-950: #062d1f;
-  --color-brand-900: #0a3f2b;
-  --color-brand-800: #0d5137;
-  --color-brand-700: #006838; /* hijau utama (hero) */
-  --color-brand-600: #1c7350; /* navbar */
-  --color-brand-500: #2f8a63;
-  --color-brand-100: #e3efe8;
-  --color-brand-50: #f2f8f4;
+  /* Hijau dari desain UI/UX tim (hero, footer, peta) + gradasi logo */
+  --color-brand-950: #032619;
+  --color-brand-900: #053a26;
+  --color-brand-800: #054f33;
+  --color-brand-700: #00663d; /* hijau utama */
+  --color-brand-600: #0b7a4b;
+  --color-brand-500: #0e8a57; /* hijau terang logo */
+  --color-brand-100: #dcebe2;
+  --color-brand-50: #f0f6f2;
 
-  --color-gold-600: #a08c4f;
-  --color-gold-500: #b9a56b; /* aksen emas */
-  --color-gold-300: #d9cc9f;
-  --color-gold-100: #f4efdd;
+  /* Emas "IPB UNIVERSITY" / "TSA IPB 2026" */
+  --color-gold-600: #9a8b52;
+  --color-gold-500: #b5a66c;
+  --color-gold-300: #d8cda0;
+  --color-gold-100: #f3efe0;
 
   --color-sage-500: #7fae96;
   --color-sage-200: #cfe2d7;
 
-  --color-ink: #13231b;
-  --color-muted: #5b6b62;
+  --color-ink: #0f2a1e;
+  --color-muted: #5a6b62;
+  --color-line: #e4e9e5;
   --color-surface: #ffffff;
-  --color-canvas: #f6f7f5;
+  --color-canvas: #f5f7f4;
 
-  --font-sans: var(--font-body);
-  --font-display: var(--font-heading);
+  --font-sans: var(--font-sora);
+  --font-display: var(--font-sora);
 
-  --radius-card: 1.25rem;
+  --radius-card: 1.5rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s var(--ease-out-soft) infinite;
+  --animate-float: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }
 
 :root {
@@ -44,7 +80,20 @@ html {
 body {
   background: var(--color-surface);
   color: var(--color-ink);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
+  font-feature-settings: "ss01";
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-gold-300);
+  color: var(--color-brand-950);
 }
 
 :focus-visible {
@@ -55,6 +104,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -112,4 +168,29 @@ body {
   border: 1px solid var(--color-brand-100);
   padding: 0.5em 0.75em;
   text-align: left;
+}
+
+/* Sorotan Filosofi Logo — properti terdaftar agar posisi & radius masker bisa ditransisikan */
+@property --mx {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --my {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+.spotlight {
+  mask-image: radial-gradient(circle at var(--mx) var(--my), #000 var(--r), transparent calc(var(--r) + 18%));
+  transition:
+    --mx 0.7s var(--ease-out-soft),
+    --my 0.7s var(--ease-out-soft),
+    --r 0.7s var(--ease-out-soft),
+    opacity 0.5s var(--ease-out-soft);
 }

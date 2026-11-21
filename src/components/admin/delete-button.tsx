@@ -1,6 +1,6 @@
 "use client";
 
-import { Trash2 } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { cn } from "@/lib/cn";
 
 /** Tombol hapus dengan konfirmasi browser. `action` adalah Server Action yang menerima FormData berisi `id`. */
@@ -14,7 +14,7 @@ export function DeleteButton({ action, id, label, confirmText, className }: { ac
     >
       <input type="hidden" name="id" value={id} />
       <button type="submit" aria-label={label ?? "Hapus"} className={cn("inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-red-600 hover:bg-red-50", className)}>
-        <Trash2 className="size-4" aria-hidden="true" />
+        <Icon name="trash-outline" className="size-4" aria-hidden="true" />
         {label && <span>{label}</span>}
       </button>
     </form>

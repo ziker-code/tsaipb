@@ -2,7 +2,7 @@
 
 import { useState, useTransition, type FormEvent, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
-import { Loader2 } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { Markdown } from "@/components/markdown";
 import { cn } from "@/lib/cn";
 
@@ -41,7 +41,7 @@ export function SubmitButton({ children, className, pending: pendingProp }: { ch
       disabled={pending}
       className={cn("inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60", className)}
     >
-      {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
+      {pending && <Icon name="sync" className="size-4 animate-spin" aria-hidden="true" />}
       {children}
     </button>
   );

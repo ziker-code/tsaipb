@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Icon } from "@/components/icon";
 import type { Division, GalleryItem } from "@/lib/types";
 import { cn } from "@/lib/cn";
 
@@ -43,7 +43,7 @@ export function GalleryGrid({ items, divisions }: { items: GalleryItem[]; divisi
               aria-pressed={filter === f.id}
               onClick={() => setFilter(f.id)}
               className={cn(
-                "shrink-0 rounded-xl px-4 py-2 text-sm font-semibold transition-colors",
+                "shrink-0 rounded-full px-4 py-2 text-sm transition-colors",
                 filter === f.id ? "bg-brand-700 text-white" : "bg-brand-50 text-brand-800 hover:bg-brand-100",
               )}
             >
@@ -73,15 +73,15 @@ export function GalleryGrid({ items, divisions }: { items: GalleryItem[]; divisi
       {current && (
         <div role="dialog" aria-modal="true" aria-label="Pratinjau foto" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-4" onClick={close}>
           <button type="button" onClick={close} aria-label="Tutup" className="absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">
-            <X className="size-6" />
+            <Icon name="close" className="size-6" />
           </button>
           {shown.length > 1 && (
             <>
               <button type="button" onClick={(e) => (e.stopPropagation(), step(-1))} aria-label="Sebelumnya" className="absolute left-2 grid size-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:left-6">
-                <ChevronLeft className="size-6" />
+                <Icon name="chevron-back" className="size-6" />
               </button>
               <button type="button" onClick={(e) => (e.stopPropagation(), step(1))} aria-label="Berikutnya" className="absolute right-2 grid size-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-6">
-                <ChevronRight className="size-6" />
+                <Icon name="chevron-forward" className="size-6" />
               </button>
             </>
           )}

@@ -36,7 +36,7 @@ export default function LoginPage({ searchParams }: PageProps<"/admin/login">) {
           <Logo />
         </div>
         <div className="rounded-[var(--radius-card)] bg-white p-7 shadow-2xl">
-          <h1 className="font-display text-xl font-extrabold text-brand-800">Masuk Admin</h1>
+          <h1 className="text-xl font-light text-brand-800">Masuk Admin</h1>
           <p className="mb-6 mt-1 text-sm text-muted">Kelola berita, program kerja, dan galeri TSA IPB.</p>
           <Suspense fallback={<LoginForm next="/admin" />}>
             <Notice searchParams={searchParams} />

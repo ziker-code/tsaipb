@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, Pencil, Plus } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { requireAdmin } from "@/lib/admin/auth";
 import { formatDate } from "@/lib/format";
 import { AdminPageHeader } from "@/components/admin/page-header";
@@ -24,7 +24,7 @@ export default async function AdminPostsPage() {
         description="Artikel berstatus Terbit langsung tampil di website."
         actions={
           <Link href="/admin/berita/baru" className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-800">
-            <Plus className="size-4" aria-hidden="true" /> Artikel baru
+            <Icon name="add" className="size-4" aria-hidden="true" /> Artikel baru
           </Link>
         }
       />
@@ -49,11 +49,11 @@ export default async function AdminPostsPage() {
               <div className="flex items-center">
                 {p.status === "published" && (
                   <Link href={`/berita/${p.slug}`} target="_blank" aria-label="Lihat di website" className="rounded-lg p-2 text-muted hover:bg-brand-50">
-                    <ExternalLink className="size-4" />
+                    <Icon name="open-outline" className="size-4" />
                   </Link>
                 )}
                 <Link href={`/admin/berita/${p.id}`} aria-label="Edit" className="rounded-lg p-2 text-brand-700 hover:bg-brand-50">
-                  <Pencil className="size-4" />
+                  <Icon name="create-outline" className="size-4" />
                 </Link>
                 <DeleteButton action={deletePost} id={p.id} confirmText={`Hapus artikel "${p.title}"? Tindakan ini tidak bisa dibatalkan.`} />
               </div>

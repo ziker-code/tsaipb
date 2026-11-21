@@ -1,69 +1,106 @@
+import Image from "next/image";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { Logo } from "./logo";
-import { InstagramIcon, LineIcon, LinkedinIcon } from "./social-icons";
-import { navItems, site } from "@/lib/site";
+import { Icon } from "./icon";
+import { LineIcon } from "./social-icons";
+import { site } from "@/lib/site";
 
-const socials = [
-  { ...site.socials.linkedin, name: "LinkedIn", Icon: LinkedinIcon },
-  { ...site.socials.instagram, name: "Instagram", Icon: InstagramIcon },
-  { ...site.socials.line, name: "LINE", Icon: LineIcon },
+const columns = [
+  {
+    title: "Organisasi",
+    links: [
+      { label: "Tentang Kami", href: "/tentang" },
+      { label: "Struktur", href: "/struktur" },
+      { label: "Galeri", href: "/galeri" },
+    ],
+  },
+  {
+    title: "Program",
+    links: [
+      { label: "Program Kerja", href: "/program" },
+      { label: "Kegiatan", href: "/galeri" },
+      { label: "Kolaborasi", href: "/kontak#form" },
+    ],
+  },
+  {
+    title: "Informasi",
+    links: [
+      { label: "Berita", href: "/berita" },
+      { label: "Kisah Inspiratif", href: "/berita" },
+      { label: "Kontak", href: "/kontak" },
+    ],
+  },
 ];
 
 export function SiteFooter() {
+  const socials = [
+    { name: "Instagram", href: site.socials.instagram.href, icon: <Icon name="logo-instagram" className="size-[18px]" /> },
+    { name: "LinkedIn", href: site.socials.linkedin.href, icon: <Icon name="logo-linkedin" className="size-[18px]" /> },
+    ...(site.socials.tiktok ? [{ name: "TikTok", href: site.socials.tiktok.href, icon: <Icon name="logo-tiktok" className="size-[18px]" /> }] : []),
+    { name: "LINE", href: site.socials.line.href, icon: <LineIcon className="size-[18px]" /> },
+  ];
+
   return (
     <footer className="mt-auto bg-brand-800 text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-[1.3fr_1fr]">
         <div>
-          <Logo />
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">{site.description}</p>
-          <p className="mt-4 flex items-start gap-2 text-sm text-white/75">
-            <MapPin className="mt-0.5 size-4 shrink-0 text-gold-300" aria-hidden="true" />
-            {site.address}
+          <Link href="/" aria-label="TSA IPB — Beranda" className="inline-flex items-center gap-3">
+            <Image src="/brand/logo-mark.webp" alt="" width={32} height={60} className="h-14 w-auto brightness-0 invert" />
+            <span className="text-sm font-semibold uppercase leading-tight tracking-[0.18em]">
+              Tanoto Scholars
+              <br />
+              Association
+              <br />
+              <span className="text-gold-300">IPB University</span>
+            </span>
+          </Link>
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/65">
+            Komunitas penerima beasiswa TELADAN di IPB University. Ruang untuk belajar, bertumbuh, dan berkolaborasi untuk
+            menghadirkan dampak bermakna bagi masyarakat.
           </p>
-        </div>
-
-        <nav aria-label="Navigasi footer">
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-300">Jelajahi</h2>
-          <ul className="mt-4 grid gap-2 text-sm">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-white/75 hover:text-white">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold-300">Ikuti Kami</h2>
-          <ul className="mt-4 grid gap-3 text-sm">
-            {socials.map(({ name, label, href, Icon }) => (
-              <li key={name}>
+          <ul className="mt-6 flex gap-2">
+            {socials.map((s) => (
+              <li key={s.name}>
                 <a
-                  href={href}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-white/75 hover:text-white"
+                  aria-label={s.name}
+                  className="grid size-10 place-items-center rounded-full border border-white/15 text-white/80 transition-colors duration-300 hover:border-gold-300 hover:bg-gold-300 hover:text-brand-950"
                 >
-                  <span className="grid size-8 place-items-center rounded-lg bg-white/10">
-                    <Icon className="size-4" />
-                  </span>
-                  <span>
-                    <span className="sr-only">{name}: </span>
-                    {label}
-                  </span>
+                  {s.icon}
                 </a>
               </li>
             ))}
           </ul>
         </div>
+
+        <nav aria-label="Navigasi footer" className="grid grid-cols-3 gap-6">
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-gold-300">{col.title}</h2>
+              <ul className="mt-5 grid gap-3 text-sm">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    <Link href={l.href} className="text-white/65 transition-colors hover:text-white">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
       </div>
 
-      <div className="border-t border-white/10 bg-brand-900">
-        <p className="mx-auto max-w-6xl px-4 py-4 text-center text-xs text-white/70 sm:px-6">
-          © 2026 {site.fullName}. All rights reserved. <span className="font-semibold text-gold-300">{site.tagline}!</span>
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 border-t border-white/10 px-5 py-6 sm:px-8">
+        <div className="flex items-center gap-6 opacity-80">
+          <Image src="/brand/logo-teladan-white.webp" alt="TELADAN" width={110} height={26} className="h-5 w-auto" />
+          <span className="rounded-md bg-white px-2 py-1">
+            <Image src="/brand/logo-tanoto.webp" alt="Tanoto Foundation" width={80} height={40} className="h-5 w-auto" />
+          </span>
+        </div>
+        <p className="text-xs text-white/55">
+          © 2026 TSA IPB. Hak cipta dilindungi. <span className="text-gold-300">Berkarya, Berdaya, DIGDAYA!</span>
         </p>
       </div>
     </footer>

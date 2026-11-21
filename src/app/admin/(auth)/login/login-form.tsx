@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { LogIn } from "lucide-react";
+import { Icon } from "@/components/icon";
 import { login, type LoginState } from "./actions";
 import { inputCls } from "@/components/admin/form";
 
@@ -28,7 +28,7 @@ export function LoginForm({ next }: { next: string }) {
         disabled={pending}
         className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3 font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
       >
-        <LogIn className="size-4" aria-hidden="true" />
+        <Icon name="log-in-outline" className="size-4" aria-hidden="true" />
         {pending ? "Memproses…" : "Masuk"}
       </button>
     </form>

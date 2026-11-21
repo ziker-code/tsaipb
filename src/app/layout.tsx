@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Sora } from "next/font/google";
 import { site } from "@/lib/site";
+import { MotionProvider } from "@/components/motion/provider";
 import "./globals.css";
 
-const heading = Montserrat({
-  variable: "--font-heading",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
-const body = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,13 +21,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: site.fullName,
+    images: ["/brand/logo-tsa.webp"],
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" data-scroll-behavior="smooth" className={`${heading.variable} ${body.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html lang="id" data-scroll-behavior="smooth" className={`${sora.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }
