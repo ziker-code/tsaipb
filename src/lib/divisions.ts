@@ -8,7 +8,7 @@ export const divisionBrand: Record<string, { code: string; logo: string; color: 
   "social-project": { code: "SP", logo: "/brand/div-sp.webp", color: "#22A28A", soft: "#E6F6F2" },
 };
 
-const fallback = { code: "", logo: "/brand/logo-mark.webp", color: "#00663D", soft: "#EAF3EE" };
+const fallback = { code: "", logo: "/brand/logo-mark.webp", color: "#0a4d32", soft: "#EAF3EE" };
 
 export function brandOf(slug: string | undefined) {
   return (slug && divisionBrand[slug]) || fallback;

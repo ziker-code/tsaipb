@@ -4,24 +4,26 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Reveal } from "./motion/reveal";
 import { LineReveal } from "./motion/text";
+import { MaskReveal } from "./motion/mask-reveal";
+import { PhotoHero } from "./motion/scroll";
+import heroBg from "@/assets/hero-bg.webp";
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}>{children}</div>;
 }
 
-/** Hero halaman dalam: hijau, judul tipis besar, watermark logo di kanan. */
+/** Hero halaman dalam: foto bersama TSA IPB + overlay gelap, menyusut ke kartu saat di-scroll. */
 export function PageHero({ title, subtitle = "TSA IPB 2026 · Berdaya, Berkarya, Digdaya", children }: { title: string; subtitle?: string; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden rounded-b-[2.5rem] bg-brand-700 pb-16 pt-36 text-white sm:pb-20 sm:pt-44">
-      <BrandWatermark />
-      <Container className="relative">
+    <PhotoHero image={heroBg} className="pb-20 pt-40 sm:pb-28 sm:pt-52">
+      <Container>
         <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-300">{subtitle}</p>
         <h1 className="mt-4 max-w-3xl text-4xl font-light leading-[1.05] sm:text-6xl">
           <LineReveal lines={[title]} />
         </h1>
         {children}
       </Container>
-    </section>
+    </PhotoHero>
   );
 }
 
@@ -43,7 +45,9 @@ export function SectionHeading({
   return (
     <Reveal className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
       {eyebrow && <p className={cn("text-xs font-medium uppercase tracking-[0.25em]", tone === "dark" ? "text-gold-600" : "text-gold-300")}>{eyebrow}</p>}
-      <h2 className={cn("mt-3 text-3xl font-light leading-tight sm:text-[2.6rem]", tone === "dark" ? "text-brand-900" : "text-white")}>{title}</h2>
+      <h2 className={cn("mt-3 text-3xl font-light leading-tight sm:text-[2.6rem]", tone === "dark" ? "text-brand-900" : "text-white")}>
+        <MaskReveal>{title}</MaskReveal>
+      </h2>
       {description && <p className={cn("mt-3 max-w-xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
     </Reveal>
   );

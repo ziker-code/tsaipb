@@ -17,7 +17,7 @@ export function IndonesiaMap() {
                 ? "fill-gold-500"
                 : "fill-white/85 transition-[fill] duration-500 hover:fill-gold-300"
             }
-            stroke="#00663d"
+            stroke="#0a4d32"
             strokeWidth="0.6"
           >
             <title>{loc.name}</title>

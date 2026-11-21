@@ -24,10 +24,10 @@ export default function ContactPage() {
     <>
       <PageHero title="Mari terhubung." subtitle="Kontak & Sosial Media" />
       <section className="py-20 sm:py-28">
-        <Container className="grid gap-14 lg:grid-cols-[22rem_1fr]">
+        <Container className="grid gap-14 lg:grid-cols-[22rem_1fr] [&>*]:min-w-0">
           <div>
             <SectionHeading eyebrow="Kanal Resmi" title="Temukan kami" />
-            <Stagger as="ul" className="mt-8 grid gap-3">
+            <Stagger as="ul" className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-3">
               {channels.map((c) => (
                 <StaggerItem as="li" key={c.name}>
                   <a

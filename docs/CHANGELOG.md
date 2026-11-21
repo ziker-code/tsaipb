@@ -5,6 +5,7 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-21 | v2.1: Foto bersama sebagai hero (overlay 50%), scroll motion lebih kaya (Lenis, hero menyusut, pita & panel scroll-linked), hijau lebih tua | ✅ Live | [updates/2026-11-21-v2.1-foto-scroll.md](updates/2026-11-21-v2.1-foto-scroll.md) |
 | 2026-11-21 | v2: Frontend interaktif, elegan & minimalis (Sora, logo resmi, Famicons, motion) | ✅ Live | [updates/2026-11-21-v2-frontend.md](updates/2026-11-21-v2-frontend.md) |
 | 2026-11-21 | Rencana frontend interaktif & motion (v2) | ✅ Disetujui | [updates/2026-11-21-frontend-plan.md](updates/2026-11-21-frontend-plan.md) |
 | 2026-11-21 | Rilis v1: website publik + admin inti, live di Vercel | ✅ Live | [updates/2026-11-21-v1-rilis.md](updates/2026-11-21-v1-rilis.md) |

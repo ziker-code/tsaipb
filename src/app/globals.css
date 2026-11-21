@@ -6,14 +6,14 @@
  */
 @theme {
   /* Hijau dari desain UI/UX tim (hero, footer, peta) + gradasi logo */
-  --color-brand-950: #032619;
-  --color-brand-900: #053a26;
-  --color-brand-800: #054f33;
-  --color-brand-700: #00663d; /* hijau utama */
-  --color-brand-600: #0b7a4b;
-  --color-brand-500: #0e8a57; /* hijau terang logo */
-  --color-brand-100: #dcebe2;
-  --color-brand-50: #f0f6f2;
+  --color-brand-950: #021a10;
+  --color-brand-900: #04291a;
+  --color-brand-800: #063a26;
+  --color-brand-700: #0a4d32; /* hijau utama (lebih tua) */
+  --color-brand-600: #0d5f3d;
+  --color-brand-500: #13784c; /* hijau terang logo */
+  --color-brand-100: #d6e6dc;
+  --color-brand-50: #eef4f0;
 
   /* Emas "IPB UNIVERSITY" / "TSA IPB 2026" */
   --color-gold-600: #9a8b52;
@@ -193,4 +193,9 @@ h3 {
     --my 0.7s var(--ease-out-soft),
     --r 0.7s var(--ease-out-soft),
     opacity 0.5s var(--ease-out-soft);
+}
+
+/* Lenis mengambil alih scroll halus; matikan smooth-scroll bawaan agar tidak bentrok */
+html.lenis {
+  scroll-behavior: auto;
 }

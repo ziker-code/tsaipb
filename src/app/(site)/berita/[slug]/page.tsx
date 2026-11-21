@@ -7,7 +7,9 @@ import { getLatestPosts, getPost, getPosts } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { Markdown } from "@/components/markdown";
 import { PostCard } from "@/components/cards";
-import { Container, Contours, Pill, SectionHeading } from "@/components/ui";
+import { Container, Pill, SectionHeading } from "@/components/ui";
+import { PhotoHero } from "@/components/motion/scroll";
+import heroBg from "@/assets/hero-bg.webp";
 import { ShareButtons } from "./share-buttons";
 import { site } from "@/lib/site";
 
@@ -35,8 +37,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
 
   return (
     <>
-      <section className="relative overflow-hidden bg-brand-700 pb-14 pt-32 text-white sm:pt-36">
-        <Contours />
+      <PhotoHero image={heroBg} className="pb-16 pt-40 sm:pb-24 sm:pt-48">
         <Container className="relative max-w-3xl">
           <Link href="/berita" className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-white">
             <Icon name="arrow-back" className="size-4" aria-hidden="true" /> Semua berita
@@ -44,7 +45,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
           <div className="mt-6">
             <Pill className="bg-white/15 text-gold-300">{post.category}</Pill>
           </div>
-          <h1 className="mt-3 text-3xl font-light leading-tight sm:text-4xl">{post.title}</h1>
+          <h1 className="mt-3 text-3xl font-light leading-tight sm:text-5xl">{post.title}</h1>
           <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-white/80">
             <span className="inline-flex items-center gap-1.5">
               <Icon name="calendar-outline" className="size-4" aria-hidden="true" /> {formatDate(post.published_at)}
@@ -56,7 +57,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
             )}
           </p>
         </Container>
-      </section>
+      </PhotoHero>
 
       <article className="py-14">
         <Container className="max-w-3xl">

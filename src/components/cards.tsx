@@ -5,6 +5,7 @@ import { formatDate } from "@/lib/format";
 import { brandOf } from "@/lib/divisions";
 import { cn } from "@/lib/cn";
 import { Icon } from "./icon";
+import { Parallax } from "./motion/scroll";
 
 /** Kartu proker: cover (atau panel warna divisi + logo), judul, ringkasan. */
 export function ProgramCard({ program, division, tall }: { program: Program; division?: Division; tall?: boolean }) {
@@ -15,23 +16,25 @@ export function ProgramCard({ program, division, tall }: { program: Program; div
       className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white ring-1 ring-line transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgba(5,58,38,0.35)]"
     >
       <div className={cn("relative overflow-hidden", tall ? "aspect-[4/5]" : "aspect-[16/11]")} style={{ backgroundColor: brand.soft }}>
-        {program.cover_url ? (
-          <Image
-            src={program.cover_url}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 33vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105"
-          />
-        ) : (
-          <Image
-            src={brand.logo}
-            alt=""
-            width={200}
-            height={200}
-            className="absolute inset-0 m-auto h-2/5 w-auto object-contain opacity-90 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-110 group-hover:-rotate-3"
-          />
-        )}
+        <Parallax amount={tall ? 10 : 6}>
+          {program.cover_url ? (
+            <Image
+              src={program.cover_url}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105"
+            />
+          ) : (
+            <Image
+              src={brand.logo}
+              alt=""
+              width={200}
+              height={200}
+              className="absolute inset-0 m-auto h-2/5 w-auto object-contain opacity-90 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-110 group-hover:-rotate-3"
+            />
+          )}
+        </Parallax>
         {division && (
           <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 py-1 pl-1 pr-3 text-xs text-ink backdrop-blur">
             <Image src={brand.logo} alt="" width={20} height={20} className="size-5 object-contain" />

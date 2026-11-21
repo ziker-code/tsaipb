@@ -1,6 +1,7 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { BackToTop } from "@/components/back-to-top";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
@@ -17,6 +18,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
       </main>
       <SiteFooter />
       <BackToTop />
+      <SmoothScroll />
     </>
   );
 }

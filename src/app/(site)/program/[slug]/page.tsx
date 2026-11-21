@@ -11,6 +11,8 @@ import { Container, SectionHeading } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { LineReveal } from "@/components/motion/text";
 import { brandOf } from "@/lib/divisions";
+import { PhotoHero } from "@/components/motion/scroll";
+import heroBg from "@/assets/hero-bg.webp";
 
 export async function generateStaticParams() {
   const programs = await getPrograms();
@@ -41,8 +43,8 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
 
   return (
     <>
-      <section className="relative overflow-hidden rounded-b-[2.5rem] bg-brand-700 pb-16 pt-36 text-white sm:pb-20 sm:pt-44">
-        <span aria-hidden="true" className="absolute inset-0 opacity-25" style={{ background: `radial-gradient(60% 80% at 85% 20%, ${brand.color}, transparent 70%)` }} />
+      <PhotoHero image={heroBg} className="pb-20 pt-40 sm:pb-28 sm:pt-52">
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30 mix-blend-screen" style={{ background: `radial-gradient(50% 70% at 85% 25%, ${brand.color}, transparent 70%)` }} />
         <Image src={brand.logo} alt="" aria-hidden="true" width={260} height={260} className="pointer-events-none absolute -right-8 top-24 hidden h-64 w-auto object-contain opacity-90 drop-shadow-2xl md:block lg:right-16" />
         <Container className="relative">
           <Link href="/program" className="group inline-flex items-center gap-2 text-sm text-white/70 hover:text-white">
@@ -70,7 +72,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
             </p>
           )}
         </Container>
-      </section>
+      </PhotoHero>
 
       <section className="py-20 sm:py-24">
         <Container className="grid gap-14 lg:grid-cols-[1fr_20rem]">

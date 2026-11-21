@@ -14,6 +14,8 @@ import { CountUp } from "@/components/motion/count-up";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { LineReveal, ScrollHighlight, WordsReveal } from "@/components/motion/text";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
+import { ExpandOnScroll, PhotoHero, RiseOnScroll, ScrollRows } from "@/components/motion/scroll";
+import heroBg from "@/assets/hero-bg.webp";
 
 export default async function HomePage() {
   const [settings, divisions, featured, posts, testimonials, gallery] = await Promise.all([
@@ -33,43 +35,36 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ───────────── Hero ───────────── */}
-      <section className="relative overflow-hidden bg-brand-700 pb-40 pt-36 text-white sm:pb-48 sm:pt-44">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 lg:block">
-          <div className="animate-float">
-            <Image src="/brand/logo-mark.webp" alt="" width={320} height={600} priority className="h-[520px] w-auto opacity-95 drop-shadow-[0_40px_60px_rgba(0,0,0,0.25)]" />
-          </div>
-        </div>
-        <Container className="relative">
+      {/* ───────────── Hero (foto bersama + overlay 50%) ───────────── */}
+      <PhotoHero image={heroBg} className="flex min-h-[100svh] flex-col justify-end pb-44 pt-36 sm:pb-52">
+        <Container>
           <Reveal y={12}>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-xs tracking-wide text-white/80">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-3 py-1 text-xs tracking-wide text-white/85 backdrop-blur">
               <span className="size-1.5 rounded-full bg-gold-300" /> Tanoto Scholars Association · IPB University
             </p>
           </Reveal>
-          <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.02] sm:text-7xl">
-            <LineReveal lines={["Berkarya, Berdaya,", <span key="d" className="font-semibold text-gold-300">DIGDAYA!</span>]} delay={0.1} />
+          <h1 className="mt-6 max-w-4xl text-5xl font-light leading-[1.02] sm:text-7xl lg:text-8xl">
+            <LineReveal lines={["Berkarya, Berdaya,", <span key="d" className="font-semibold text-gold-300">DIGDAYA!</span>]} delay={0.15} />
           </h1>
-          <Reveal delay={0.45} className="mt-7 max-w-lg">
-            <p className="text-lg font-light leading-relaxed text-white/80">
-              Bersama TSA IPB, penerima beasiswa Tanoto Foundation berkarya melalui kolaborasi, tumbuh menjadi pribadi berdaya, dan
-              mengabdi untuk membawa perubahan bagi masyarakat.
-            </p>
-          </Reveal>
-          <Reveal delay={0.6} className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href="/program" variant="light">
-              Program Kami
-              <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </ButtonLink>
-            <ButtonLink href="/tentang" variant="outline">
-              Kenali TSA IPB
-            </ButtonLink>
-          </Reveal>
+          <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <Reveal delay={0.5} className="max-w-lg">
+              <p className="text-lg font-light leading-relaxed text-white/85">
+                Bersama TSA IPB, penerima beasiswa Tanoto Foundation berkarya melalui kolaborasi, tumbuh menjadi pribadi berdaya, dan
+                mengabdi untuk membawa perubahan bagi masyarakat.
+              </p>
+            </Reveal>
+            <Reveal delay={0.65} className="flex flex-wrap gap-3">
+              <ButtonLink href="/program" variant="light">
+                Program Kami
+                <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </ButtonLink>
+              <ButtonLink href="/tentang" variant="outline">
+                Kenali TSA IPB
+              </ButtonLink>
+            </Reveal>
+          </div>
         </Container>
-        {/* lengkung bawah sesuai desain */}
-        <svg aria-hidden="true" viewBox="0 0 1440 120" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-px h-16 w-full fill-white sm:h-24">
-          <path d="M0 120V60C240 10 480 0 720 30s480 70 720 20v70Z" />
-        </svg>
-      </section>
+      </PhotoHero>
 
       {/* ───────────── Statistik ───────────── */}
       <section aria-label="Statistik" className="relative -mt-28 sm:-mt-32">
@@ -130,33 +125,36 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ───────────── Pita galeri / divisi ───────────── */}
-      <section aria-label="Sorotan" className="relative overflow-hidden bg-canvas py-12">
-        <div className="flex w-max animate-marquee gap-4 hover:[animation-play-state:paused] [--marquee-duration:55s]">
-          {[0, 1].map((dup) =>
-            photos.length >= 4
-              ? photos.map((g) => (
-                  <div key={`${dup}-${g.id}`} aria-hidden={dup === 1} className="relative h-56 w-80 shrink-0 overflow-hidden rounded-[var(--radius-card)] sm:h-64 sm:w-96">
-                    <Image src={g.image_url} alt={dup === 0 ? g.alt : ""} fill sizes="384px" className="object-cover" />
-                  </div>
-                ))
-              : divisions.map((d) => {
-                  const b = brandOf(d.slug);
-                  return (
-                    <div key={`${dup}-${d.id}`} aria-hidden={dup === 1} className="flex h-40 w-72 shrink-0 items-center gap-5 rounded-[var(--radius-card)] bg-white px-7 ring-1 ring-line">
-                      <Image src={b.logo} alt="" width={64} height={64} className="size-14 object-contain" />
-                      <span>
-                        <span className="block text-xs uppercase tracking-[0.2em]" style={{ color: b.color }}>
-                          {b.code || "TSA"}
-                        </span>
-                        <span className="mt-1 block font-medium text-brand-900">{d.name}</span>
-                      </span>
+      {/* ───────────── Pita sorotan: dua baris bergerak berlawanan mengikuti scroll ───────────── */}
+      <section aria-label="Sorotan" className="relative overflow-hidden bg-canvas py-16">
+        <ScrollRows
+          rows={[0, 1].map((row) =>
+            Array.from({ length: 3 }).flatMap((_, rep) =>
+              photos.length >= 4
+                ? photos.map((g, i) => (
+                    <div key={`${row}-${rep}-${g.id}`} aria-hidden={rep > 0 || row > 0} className="relative h-52 w-80 shrink-0 overflow-hidden rounded-[var(--radius-card)] sm:h-64 sm:w-[26rem]">
+                      <Image src={photos[(i + row * 3) % photos.length].image_url} alt={rep === 0 && row === 0 ? g.alt : ""} fill sizes="416px" className="object-cover" />
                     </div>
-                  );
-                }),
+                  ))
+                : divisions.map((_, i) => {
+                    const d = divisions[(i + row * 3) % divisions.length];
+                    const b = brandOf(d.slug);
+                    return (
+                      <div key={`${row}-${rep}-${d.id}`} aria-hidden={rep > 0 || row > 0} className="flex h-36 w-80 shrink-0 items-center gap-5 rounded-[var(--radius-card)] bg-white px-7 ring-1 ring-line sm:h-40 sm:w-96">
+                        <Image src={b.logo} alt="" width={64} height={64} className="size-14 object-contain" />
+                        <span>
+                          <span className="block text-xs uppercase tracking-[0.2em]" style={{ color: b.color }}>
+                            {b.code || "TSA"}
+                          </span>
+                          <span className="mt-1 block text-lg font-light text-brand-900">{d.name}</span>
+                        </span>
+                      </div>
+                    );
+                  }),
+            ),
           )}
-        </div>
-        <Container className="mt-8 flex justify-end">
+        />
+        <Container className="mt-10 flex justify-end">
           <ButtonLink href="/galeri" variant="ghost">
             Jelajahi Galeri
             <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -165,7 +163,7 @@ export default async function HomePage() {
       </section>
 
       {/* ───────────── TSA IPB Berdampak ───────────── */}
-      <section className="relative overflow-hidden bg-brand-700 py-24 text-white sm:py-28">
+      <ExpandOnScroll className="relative overflow-hidden bg-brand-700 py-24 text-white sm:py-32">
         <Container className="relative">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading tone="light" eyebrow="Berbasis di Bogor, Jawa Barat" title="TSA IPB Berdampak" description="Dari IPB, bergerak bersama untuk membawa perubahan bagi negeri." />
@@ -186,7 +184,7 @@ export default async function HomePage() {
             (CC BY 4.0)
           </p>
         </Container>
-      </section>
+      </ExpandOnScroll>
 
       {/* ───────────── Testimoni ───────────── */}
       {testimonials.length > 0 && (
@@ -292,7 +290,7 @@ export default async function HomePage() {
 
       {/* ───────────── FAQ (gaya referensi) ───────────── */}
       <section className="px-3 sm:px-6">
-        <div className="mx-auto max-w-[88rem] rounded-[2rem] bg-brand-950 py-20 text-white sm:py-28">
+        <RiseOnScroll className="mx-auto max-w-[88rem] rounded-[2rem] bg-brand-950 py-20 text-white sm:py-28">
           <Container className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
             <div>
               <h2 className="text-4xl font-light leading-[1.08] text-gold-300 sm:text-5xl">
@@ -306,14 +304,14 @@ export default async function HomePage() {
               <Accordion items={faqs} />
             </Reveal>
           </Container>
-        </div>
+        </RiseOnScroll>
       </section>
 
       {/* ───────────── CTA ───────────── */}
       <section className="relative pt-24">
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-brand-800" />
         <Container className="relative">
-          <Reveal y={40}>
+          <RiseOnScroll>
             <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-gold-300 via-gold-500 to-gold-600 px-8 py-14 sm:px-14 sm:py-16">
               <Image src="/brand/logo-mark.webp" alt="" aria-hidden="true" width={200} height={375} className="pointer-events-none absolute -right-6 -top-10 h-[140%] w-auto opacity-15 mix-blend-multiply" />
               <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-end">
@@ -329,7 +327,7 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </RiseOnScroll>
         </Container>
       </section>
     </>
