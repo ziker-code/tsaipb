@@ -59,6 +59,9 @@ export type Testimonial = {
   quote: string;
   name: string;
   role: string;
+  /** Angkatan, mis. "TLD 27" (kolom dari migrasi 0002) */
+  batch?: string;
+  photo_url?: string | null;
   is_visible: boolean;
   sort_order: number;
 };

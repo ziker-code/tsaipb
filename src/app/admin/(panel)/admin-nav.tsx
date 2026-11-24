@@ -12,6 +12,7 @@ const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/admin/berita", label: "Berita", icon: "newspaper-outline" },
   { href: "/admin/program", label: "Program Kerja", icon: "folder-outline" },
   { href: "/admin/galeri", label: "Galeri", icon: "images-outline" },
+  { href: "/admin/cerita", label: "Cerita Mereka", icon: "chatbubble-ellipses-outline" },
 ];
 
 function NavLinks({ pathname }: { pathname: string }) {
@@ -61,7 +62,7 @@ export function AdminNav() {
         </Suspense>
       </nav>
       <div className="hidden px-5 lg:absolute lg:bottom-6 lg:block lg:w-60">
-        <p className="mb-3 text-xs leading-relaxed text-white/55">Pengurus, divisi, testimoni & pengaturan diedit lewat Supabase Table Editor.</p>
+        <p className="mb-3 text-xs leading-relaxed text-white/55">Pengurus, divisi & pengaturan diedit lewat Supabase Table Editor.</p>
         <Link href="/" target="_blank" className="mb-2 flex items-center gap-2 text-sm text-white/80 hover:text-white">
           <Icon name="open-outline" className="size-4" /> Lihat website
         </Link>

@@ -35,6 +35,10 @@
 
   --radius-card: 1.5rem;
 
+  /* Bayangan (warna lewat token, bukan literal di kelas) */
+  --shadow-card: 0 20px 50px -24px rgb(5 58 38 / 0.35);
+  --shadow-lift: 0 24px 60px -24px rgb(5 58 38 / 0.35);
+
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;

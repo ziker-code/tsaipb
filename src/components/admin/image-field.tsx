@@ -5,7 +5,7 @@ import { Icon } from "@/components/icon";
 import { uploadImage } from "@/lib/admin/image";
 
 /** Upload satu gambar (cover). URL hasil upload disimpan di hidden input `name`. */
-export function ImageField({ name, label, defaultValue, folder }: { name: string; label: string; defaultValue?: string | null; folder: "posts" | "programs" }) {
+export function ImageField({ name, label, defaultValue, folder }: { name: string; label: string; defaultValue?: string | null; folder: "posts" | "programs" | "stories" }) {
   const [url, setUrl] = useState(defaultValue ?? "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");

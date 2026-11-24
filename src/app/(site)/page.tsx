@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { getDivisions, getFeaturedPrograms, getGallery, getPosts, getSettings, getTestimonials } from "@/lib/data";
 import { youtubeThumb } from "@/lib/format";
 import { brandOf } from "@/lib/divisions";
 import { faqs } from "@/lib/faq";
-import { formatDate } from "@/lib/format";
-import { PostCard, ProgramCard, StoryCard } from "@/components/cards";
+import { NewsFeature, NewsRow, ProgramTile, StoryCard } from "@/components/cards";
+import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 import { IndonesiaMap } from "@/components/home/indonesia-map";
 import { Icon } from "@/components/icon";
 import { Accordion } from "@/components/motion/accordion";
@@ -71,7 +70,7 @@ export default async function HomePage() {
         <Container>
           <Stagger as="ul" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
             {settings.stats.map((s) => (
-              <StaggerItem as="li" key={s.label} className="rounded-[var(--radius-card)] bg-white p-6 text-center shadow-[0_20px_50px_-24px_rgba(5,58,38,0.35)] ring-1 ring-line">
+              <StaggerItem as="li" key={s.label} className="rounded-[var(--radius-card)] bg-white p-6 text-center shadow-card ring-1 ring-line">
                 <CountUp value={s.value} className="block text-4xl font-light text-brand-700 sm:text-5xl" />
                 <p className="mt-2 text-sm text-muted">{s.label}</p>
               </StaggerItem>
@@ -89,19 +88,19 @@ export default async function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               aria-disabled={!settings.profile_video_url}
-              className="group relative block aspect-video overflow-hidden rounded-[var(--radius-card)] bg-brand-950 aria-disabled:pointer-events-none"
+              className="group relative block aspect-video overflow-hidden rounded-[var(--radius-card)] bg-brand-950 aria-disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
             >
               {videoThumb ? (
-                <Image src={videoThumb} alt="" fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-80" />
+                <Image src={videoThumb} alt="" fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover opacity-60 transition-[opacity,transform] duration-700 motion-reduce:transition-none group-hover:scale-105 group-hover:opacity-80" />
               ) : (
                 <Image src="/brand/logo-mark.webp" alt="" width={80} height={150} className="absolute right-6 top-6 h-24 w-auto opacity-20" />
               )}
               <span className="absolute inset-0 flex flex-col items-start justify-end p-6 text-white">
-                <span className="text-xs uppercase tracking-[0.25em] text-white/60">Profil TSA IPB</span>
+                <span className="text-sm text-white/65">Profil TSA IPB</span>
                 <span className="mt-1 text-lg font-light">{settings.profile_video_url ? "Tonton video profil kami" : "Video profil segera hadir"}</span>
               </span>
               {settings.profile_video_url && (
-                <span className="absolute right-6 top-6 grid size-14 place-items-center rounded-full bg-white/15 backdrop-blur transition-all duration-500 group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
+                <span className="absolute right-6 top-6 grid size-14 place-items-center rounded-full bg-white/15 backdrop-blur transition-[transform,background-color,color] duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
                   <Icon name="play" className="ml-0.5 size-5" />
                 </span>
               )}
@@ -109,7 +108,7 @@ export default async function HomePage() {
           </Reveal>
           <div>
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-600">Kenali Lebih Dekat</p>
+              <p className="text-sm font-medium text-gold-600">Kenali lebih dekat</p>
             </Reveal>
             <ScrollHighlight
               className="mt-5 text-2xl font-light leading-snug text-brand-900 sm:text-[1.85rem]"
@@ -143,7 +142,7 @@ export default async function HomePage() {
                       <div key={`${row}-${rep}-${d.id}`} aria-hidden={rep > 0 || row > 0} className="flex h-36 w-80 shrink-0 items-center gap-5 rounded-[var(--radius-card)] bg-white px-7 ring-1 ring-line sm:h-40 sm:w-96">
                         <Image src={b.logo} alt="" width={64} height={64} className="size-14 object-contain" />
                         <span>
-                          <span className="block text-xs uppercase tracking-[0.2em]" style={{ color: b.color }}>
+                          <span className="block text-xs font-medium" style={{ color: b.color }}>
                             {b.code || "TSA"}
                           </span>
                           <span className="mt-1 block text-lg font-light text-brand-900">{d.name}</span>
@@ -186,46 +185,32 @@ export default async function HomePage() {
         </Container>
       </ExpandOnScroll>
 
-      {/* ───────────── Testimoni ───────────── */}
-      {testimonials.length > 0 && (
-        <section className="overflow-hidden py-24 sm:py-32">
-          <Container>
-            <SectionHeading eyebrow="Testimoni" title="Cerita Mereka tentang TSA IPB" description="Pengalaman belajar, bertumbuh, dan berkontribusi bersama TSA IPB." />
-            <Carousel label="Testimoni" className="sm:-mt-12" controlsClassName="hidden sm:flex">
-              {testimonials.map((t) => (
-                <li key={t.id} className="w-[85%] shrink-0 snap-start sm:w-[30rem]">
-                  <figure className="flex h-full flex-col rounded-[var(--radius-card)] bg-gold-500 p-8 text-white">
-                    <Icon name="chatbubble-ellipses-outline" className="size-6 text-white/60" />
-                    <blockquote className="mt-5 flex-1 text-lg font-light leading-relaxed">“{t.quote}”</blockquote>
-                    <figcaption className="mt-8 border-t border-white/25 pt-5">
-                      <span className="block font-medium">{t.name}</span>
-                      {t.role && <span className="text-sm text-white/75">{t.role}</span>}
-                    </figcaption>
-                  </figure>
-                </li>
-              ))}
-            </Carousel>
-          </Container>
-        </section>
-      )}
+      {/* ───────────── Cerita Mereka (carousel fokus-tengah, sesuai referensi) ───────────── */}
+      <section className="py-24 sm:py-32">
+        <Container>
+          <SectionHeading title="Cerita Mereka tentang TSA IPB" description="Pengalaman belajar, bertumbuh, dan berkontribusi bersama TSA IPB." />
+        </Container>
+        <div className="mt-12">
+          <TestimonialCarousel items={testimonials} />
+        </div>
+      </section>
 
-      {/* ───────────── Program ───────────── */}
+      {/* ───────────── Program TSA IPB ───────────── */}
       {featured.length > 0 && (
         <section className="bg-canvas py-24 sm:py-32">
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-6">
-              <SectionHeading eyebrow="Program TSA IPB" title="Ruang belajar, kolaborasi, dan pengabdian" />
+              <SectionHeading title="Program TSA IPB" description="Jelajahi ruang belajar, kolaborasi, dan pengabdian bersama TSA IPB." />
               <Reveal>
                 <ButtonLink href="/program" variant="ghost">
                   Semua program
-                  <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </ButtonLink>
               </Reveal>
             </div>
-            <Stagger as="ul" className="mt-12 grid gap-6 md:grid-cols-3">
+            <Stagger as="ul" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))]">
               {featured.map((p) => (
                 <StaggerItem as="li" key={p.id}>
-                  <ProgramCard program={p} division={divisionById.get(p.division_id)} tall />
+                  <ProgramTile program={p} division={divisionById.get(p.division_id)} />
                 </StaggerItem>
               ))}
             </Stagger>
@@ -235,12 +220,20 @@ export default async function HomePage() {
 
       {/* ───────────── Kisah Inspiratif ───────────── */}
       {stories.length > 0 && (
-        <section className="py-24 sm:py-32">
+        <section className="overflow-x-clip py-24 sm:py-32">
           <Container>
-            <SectionHeading eyebrow="Kisah Inspiratif" title="Semangat para Tanoto Scholars" description="Temukan inspirasi dari perjalanan anggota TSA IPB." />
-            <Carousel label="Kisah inspiratif" className="sm:-mt-12" controlsClassName="hidden sm:flex">
+            <Carousel
+              label="Kisah inspiratif"
+              header={<SectionHeading title="Kisah Inspiratif" description="Temukan inspirasi dari perjalanan dan semangat para Tanoto Scholars." />}
+              actions={
+                <ButtonLink href="/berita" className="mr-2">
+                  Lihat semua
+                </ButtonLink>
+              }
+              controlsClassName="hidden sm:flex"
+            >
               {stories.map((p) => (
-                <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[18rem]">
+                <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
                   <StoryCard post={p} />
                 </li>
               ))}
@@ -254,31 +247,22 @@ export default async function HomePage() {
         <section className={stories.length ? "pb-24 sm:pb-32" : "py-24 sm:py-32"}>
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-6">
-              <SectionHeading eyebrow="Kabar Terbaru" title="Kegiatan & kolaborasi terkini" />
+              <SectionHeading title="Kabar Terbaru" description="Ikuti kabar kegiatan, kolaborasi, dan perkembangan terkini TSA IPB." />
               <Reveal>
                 <ButtonLink href="/berita" variant="ghost">
                   Semua berita
-                  <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </ButtonLink>
               </Reveal>
             </div>
-            <div className="mt-12 grid gap-10 lg:grid-cols-[1.25fr_1fr]">
-              <Reveal>
-                <PostCard post={headline} />
+            <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+              <Reveal className="min-w-0">
+                <NewsFeature post={headline} />
               </Reveal>
               {moreNews.length > 0 && (
-                <Stagger as="ul" className="grid content-start gap-4">
+                <Stagger as="ul" className="grid content-start gap-3">
                   {moreNews.map((p) => (
                     <StaggerItem as="li" key={p.id}>
-                      <Link href={`/berita/${p.slug}`} className="group flex gap-5 rounded-2xl p-2 transition-colors hover:bg-canvas">
-                        <span className="relative aspect-[4/3] w-32 shrink-0 overflow-hidden rounded-xl bg-brand-100">
-                          {p.cover_url && <Image src={p.cover_url} alt="" fill sizes="128px" className="object-cover transition-transform duration-700 group-hover:scale-105" />}
-                        </span>
-                        <span className="py-1">
-                          <span className="line-clamp-2 font-medium leading-snug text-brand-900">{p.title}</span>
-                          <span className="mt-2 block text-xs text-muted">{formatDate(p.published_at)}</span>
-                        </span>
-                      </Link>
+                      <NewsRow post={p} />
                     </StaggerItem>
                   ))}
                 </Stagger>

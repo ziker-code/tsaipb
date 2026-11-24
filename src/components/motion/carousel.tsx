@@ -8,7 +8,23 @@ import { cn } from "@/lib/cn";
  * Carousel ringan berbasis scroll-snap (swipe/drag native di HP, trackpad di desktop)
  * dengan tombol panah. Tanpa library tambahan.
  */
-export function Carousel({ children, label, className, controlsClassName }: { children: ReactNode; label: string; className?: string; controlsClassName?: string }) {
+export function Carousel({
+  children,
+  label,
+  className,
+  controlsClassName,
+  header,
+  actions,
+}: {
+  children: ReactNode;
+  label: string;
+  className?: string;
+  controlsClassName?: string;
+  /** Judul section di kiri, sejajar dengan tombol di kanan */
+  header?: ReactNode;
+  /** Tombol tambahan di kiri panah (mis. "Lihat semua") */
+  actions?: ReactNode;
+}) {
   const ref = useRef<HTMLUListElement>(null);
   const [edge, setEdge] = useState({ start: true, end: false });
 
@@ -39,19 +55,25 @@ export function Carousel({ children, label, className, controlsClassName }: { ch
 
   return (
     <div className={className}>
-      <div className={cn("flex justify-end gap-2", controlsClassName)}>
-        {([-1, 1] as const).map((dir) => (
-          <button
-            key={dir}
-            type="button"
-            onClick={() => go(dir)}
-            disabled={dir === -1 ? edge.start : edge.end}
-            aria-label={dir === -1 ? "Sebelumnya" : "Berikutnya"}
-            className="grid size-11 place-items-center rounded-full border border-brand-700/20 text-brand-700 transition-colors hover:bg-brand-700 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-          >
-            <Icon name={dir === -1 ? "arrow-back" : "arrow-forward"} className="size-4" />
-          </button>
-        ))}
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        {header}
+        <div className="flex items-center gap-2">
+          {actions}
+          <div className={cn("flex justify-end gap-2", controlsClassName)}>
+            {([-1, 1] as const).map((dir) => (
+              <button
+                key={dir}
+                type="button"
+                onClick={() => go(dir)}
+                disabled={dir === -1 ? edge.start : edge.end}
+                aria-label={dir === -1 ? "Sebelumnya" : "Berikutnya"}
+                className="grid size-11 place-items-center rounded-full border border-brand-700/20 text-brand-700 transition-colors hover:bg-brand-700 hover:text-white disabled:pointer-events-none disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+              >
+                <Icon name={dir === -1 ? "arrow-back" : "arrow-forward"} className="size-4" />
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
       <ul
         ref={ref}

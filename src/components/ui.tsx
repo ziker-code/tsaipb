@@ -95,7 +95,7 @@ export function ButtonLink({ href, children, variant = "solid", className, exter
     light: "bg-white text-brand-800 hover:bg-gold-100",
     ghost: "border border-brand-700/20 text-brand-800 hover:border-brand-700 hover:bg-brand-700 hover:text-white",
   }[variant];
-  const cls = cn("group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-300", styles, className);
+  const cls = cn("group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500", styles, className);
   if (external)
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>

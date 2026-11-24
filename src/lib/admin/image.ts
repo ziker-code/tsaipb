@@ -22,7 +22,7 @@ export async function compressImage(file: File): Promise<Blob> {
 }
 
 /** Kompres + upload ke bucket `media`, kembalikan URL publik. */
-export async function uploadImage(file: File, folder: "posts" | "programs" | "gallery"): Promise<string> {
+export async function uploadImage(file: File, folder: "posts" | "programs" | "gallery" | "stories"): Promise<string> {
   const supabase = createBrowserSupabase();
   const blob = await compressImage(file);
   const ext = blob.type === "image/webp" ? "webp" : (file.name.split(".").pop() || "jpg").toLowerCase();

@@ -1,5 +1,13 @@
 const dateFmt = new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Jakarta" });
 
+const dateTimeFmt = new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Jakarta" });
+
+/** "28 September 2026, 12.30" — tanpa titik tengah sebagai pemisah. */
+export function formatDateTime(iso: string | null | undefined) {
+  if (!iso) return "";
+  return dateTimeFmt.format(new Date(iso)).replace(" pukul ", ", ");
+}
+
 export function formatDate(iso: string | null | undefined) {
   if (!iso) return "";
   return dateFmt.format(new Date(iso));
