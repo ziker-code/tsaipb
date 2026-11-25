@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | **Kode selesai; menunggu kunci API untuk deploy & migrasi** |
+| Status | **Selesai & live (lihat docs/updates/2026-11-25-imagekit-integrasi.md)** |
 | Tanggal | 25 November 2026 |
 | Keputusan user | Database & login **tetap Supabase**; gambar dipindah ke **ImageKit.io** |
 

@@ -18,12 +18,11 @@ Gambar konten dipindah dari Supabase Storage ke **ImageKit**; database & login t
 | `next.config.ts` | Domain `ik.imagekit.io` |
 | `.mcp.json` | MCP ImageKit DAM, Admin, DevTools (commit sebelumnya) |
 
-## Status
-- Build, lint, typecheck lolos. Endpoint `/api/imagekit/auth` mengembalikan 503 dengan pesan jelas selama kunci belum diisi.
-- **Belum di-deploy**: production masih memakai Supabase Storage sampai kunci ImageKit diisi di Vercel, supaya upload admin tidak terputus.
-- **Migrasi 5 cover program** menunggu kunci; dijalankan lewat tombol di Admin → Galeri.
+## Status (selesai)
+- Kunci ImageKit di `.env.local` dan Vercel (production + preview); koneksi diuji: upload, CDN, pencarian & hapus file.
+- **Live** di https://tsaipb.vercel.app. `/api/imagekit/auth` menolak non-admin (401).
+- **Migrasi**: 5 cover program dipindah lewat tombol Admin → Galeri → sekarang di `/tsaipb/programs` ImageKit, URL database diperbarui, tampil di Beranda via CDN.
+- **Rotasi kunci**: kunci sempat terkirim lewat chat → user me-roll pasangan kunci di Dashboard ImageKit; kunci baru dipasang di `.env.local` & Vercel, deploy ulang, upload bertanda tangan (gaya browser) diuji 200 lalu file uji dihapus.
 
-## Langkah berikutnya
-1. Isi `NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT`, `IMAGEKIT_PUBLIC_KEY`, `IMAGEKIT_PRIVATE_KEY` di `.env.local`.
-2. Saya salin ke Vercel env → deploy → login admin → Admin → Galeri → **Pindahkan ke ImageKit**.
-3. Uji upload baru di Berita/Program/Galeri/Cerita.
+## Catatan
+- Folder kosong `/tsaipb/_uji` (sisa uji koneksi) boleh dihapus dari media library.
