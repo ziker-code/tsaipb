@@ -41,14 +41,12 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-auto bg-brand-800 text-white">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-12 pt-20 sm:px-8 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mx-auto grid max-w-[88rem] gap-12 px-5 pb-12 pt-20 sm:px-8 lg:px-12 lg:grid-cols-[1.3fr_1fr]">
         <div>
           <Link href="/" aria-label="TSA IPB — Beranda" className="inline-flex items-center gap-3">
             <Image src="/brand/logo-mark.webp" alt="" width={32} height={60} className="h-14 w-auto brightness-0 invert" />
-            <span className="text-sm font-semibold uppercase leading-tight tracking-[0.18em]">
-              Tanoto Scholars
-              <br />
-              Association
+            <span className="text-base font-semibold leading-tight">
+              Tanoto Scholars Association
               <br />
               <span className="text-gold-300">IPB University</span>
             </span>
@@ -77,7 +75,7 @@ export function SiteFooter() {
         <nav aria-label="Navigasi footer" className="grid grid-cols-3 gap-6">
           {columns.map((col) => (
             <div key={col.title}>
-              <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-gold-300">{col.title}</h2>
+              <h2 className="text-sm font-semibold text-gold-300">{col.title}</h2>
               <ul className="mt-5 grid gap-3 text-sm">
                 {col.links.map((l) => (
                   <li key={l.label}>
@@ -92,7 +90,7 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 border-t border-white/10 px-5 py-6 sm:px-8">
+      <div className="mx-auto flex max-w-[88rem] flex-wrap items-center justify-between gap-6 border-t border-white/10 px-5 py-6 sm:px-8 lg:px-12">
         <div className="flex items-center gap-6 opacity-80">
           <Image src="/brand/logo-teladan-white.webp" alt="TELADAN" width={110} height={26} className="h-5 w-auto" />
           <span className="rounded-md bg-white px-2 py-1">

@@ -40,7 +40,7 @@ export default async function HomePage() {
             <LineReveal lines={["Berdaya, Berkarya,", <span key="d" className="font-semibold text-gold-300">DIGDAYA!</span>]} delay={0.15} />
           </h1>
           <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <Reveal delay={0.5} className="max-w-lg">
+            <Reveal delay={0.5} className="max-w-2xl">
               <p className="text-lg font-light leading-relaxed text-white/85">
                 Bersama TSA IPB, penerima beasiswa Tanoto Foundation berkarya melalui kolaborasi, tumbuh menjadi pribadi berdaya, dan
                 mengabdi untuk membawa perubahan bagi masyarakat.
@@ -88,7 +88,7 @@ export default async function HomePage() {
               </span>
             </a>
           </Reveal>
-          <div className="px-5 sm:px-8 lg:max-w-xl lg:pl-0 lg:pr-10">
+          <div className="px-5 sm:px-8 lg:pl-0 lg:pr-12">
             <SectionHeading size="md" title="Kenali Lebih Dekat TSA IPB" />
             <ScrollHighlight
               className="mt-6 text-xl font-light leading-relaxed text-brand-900 sm:text-2xl"
@@ -211,12 +211,12 @@ export default async function HomePage() {
           >
             {stories.length
               ? stories.map((p) => (
-                  <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
+                  <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[18.75rem]">
                     <StoryCard post={p} />
                   </li>
                 ))
               : [0, 1, 2, 3, 4].map((i) => (
-                  <li key={i} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
+                  <li key={i} className="w-[78%] shrink-0 snap-start sm:w-[18.75rem]">
                     <StorySkeleton label={i === 0 ? "Kisah pertama segera hadir" : undefined} />
                   </li>
                 ))}

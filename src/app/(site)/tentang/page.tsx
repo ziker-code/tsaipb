@@ -44,7 +44,7 @@ export default function AboutPage() {
               text="TSA IPB beranggotakan 42 pengurus aktif. Posisi leader diisi angkatan 2025, dengan mayoritas pengurus dari TELADAN 2026. Kami percaya kepemimpinan harus merata — setiap anggota menjadi penanggung jawab kegiatan, sehingga semua punya kesempatan nyata untuk memimpin."
             />
             <Reveal className="mt-8">
-              <p className="max-w-2xl leading-relaxed text-muted">
+              <p className="max-w-4xl leading-relaxed text-muted">
                 Tanoto Scholars Association (TSA) IPB adalah organisasi penerima beasiswa TELADAN dari Tanoto Foundation di IPB University.
                 Kami mengedepankan rasa kekeluargaan yang disertai profesionalitas.
               </p>
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <Reveal>
             <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-600">Visi</p>
           </Reveal>
-          <p className="mt-5 max-w-4xl text-3xl font-light leading-snug text-brand-900 sm:text-[2.6rem]">
+          <p className="mt-5 max-w-5xl text-3xl font-light leading-snug text-brand-900 sm:text-[2.6rem]">
             <WordsReveal text="Menjadikan TSA IPB ruang yang menyenangkan untuk tumbuh dan berekspresi — memberi dampak positif bagi individu dan masyarakat melalui kehangatan keluarga dan profesionalisme." />
           </p>
 

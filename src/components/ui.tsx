@@ -8,8 +8,12 @@ import { MaskReveal } from "./motion/mask-reveal";
 import { PhotoHero } from "./motion/scroll";
 import heroBg from "@/assets/hero-bg.webp";
 
-export function Container({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", className)}>{children}</div>;
+/**
+ * Wadah konten. Lebar maks 88rem (1408px) + padding 48px di desktop → di layar 1440px margin ±64px
+ * per sisi, sesuai desain tim. `narrow` untuk halaman baca (artikel) agar baris nyaman dibaca.
+ */
+export function Container({ className, children, narrow }: { className?: string; children: ReactNode; narrow?: boolean }) {
+  return <div className={cn("mx-auto w-full px-5 sm:px-8 lg:px-12", narrow ? "max-w-3xl" : "max-w-[88rem]", className)}>{children}</div>;
 }
 
 /** Hero halaman dalam: foto bersama TSA IPB + overlay gelap, menyusut ke kartu saat di-scroll. */
@@ -17,10 +21,11 @@ export function PageHero({ title, subtitle = "TSA IPB 2026, Berdaya, Berkarya, D
   return (
     <PhotoHero image={heroBg} className="pb-20 pt-40 sm:pb-28 sm:pt-52">
       <Container>
-        <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-300">{subtitle}</p>
-        <h1 className="mt-4 max-w-3xl text-4xl font-light leading-[1.05] sm:text-6xl">
+        <h1 className="max-w-5xl text-4xl font-light leading-[1.05] sm:text-6xl">
           <LineReveal lines={[title]} />
         </h1>
+        {/* Nama halaman di bawah judul (bukan eyebrow di atasnya) */}
+        <p className="mt-5 text-lg font-medium text-gold-300">{subtitle}</p>
         {children}
       </Container>
     </PhotoHero>
@@ -28,7 +33,6 @@ export function PageHero({ title, subtitle = "TSA IPB 2026, Berdaya, Berkarya, D
 }
 
 export function SectionHeading({
-  eyebrow,
   title,
   description,
   align = "left",
@@ -46,11 +50,10 @@ export function SectionHeading({
   tone?: "dark" | "light";
 }) {
   return (
-    <Reveal className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
-      {eyebrow && <p className={cn("text-xs font-medium uppercase tracking-[0.25em]", tone === "dark" ? "text-gold-600" : "text-gold-300")}>{eyebrow}</p>}
+    <Reveal className={cn(align === "center" && "mx-auto max-w-3xl text-center", className)}>
+      {/* `eyebrow` sengaja tidak dirender lagi (anti "AI slop": tanpa label kecil kapital di atas judul). Prop dipertahankan agar pemanggil lama tetap valid. */}
       <h2
         className={cn(
-          eyebrow && "mt-3",
           size === "md" ? "text-2xl font-semibold leading-snug sm:text-[1.75rem]" : "text-3xl font-light leading-tight sm:text-[2.6rem]",
           "min-w-0 [overflow-wrap:break-word]",
           tone === "dark" ? "text-brand-900" : "text-white",
@@ -58,7 +61,7 @@ export function SectionHeading({
       >
         <MaskReveal>{title}</MaskReveal>
       </h2>
-      {description && <p className={cn(size === "md" ? "mt-2 max-w-xl text-sm leading-relaxed" : "mt-3 max-w-xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
+      {description && <p className={cn(size === "md" ? "mt-2 max-w-3xl text-sm leading-relaxed" : "mt-3 max-w-3xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
     </Reveal>
   );
 }

@@ -64,7 +64,7 @@ export function ProgramBrowser({ divisions, programs, initialSlug }: Props) {
                 {brand.code} · {list.length} PROGRAM
               </p>
               <h2 className="relative mt-3 text-3xl font-light text-brand-900 sm:text-4xl">{division.name}</h2>
-              <p className="relative mt-3 max-w-2xl leading-relaxed text-muted">{division.description}</p>
+              <p className="relative mt-3 max-w-4xl leading-relaxed text-muted">{division.description}</p>
               <ul className="relative mt-6 flex flex-wrap gap-2">
                 {division.core_values.map((v) => (
                   <li key={v} className="rounded-full bg-white/80 px-3 py-1 text-xs text-ink">

@@ -42,7 +42,7 @@ export function SiteHeader() {
   return (
     // h-0: header mengambang di atas konten; section pertama tiap halaman memberi padding-top.
     <header className="sticky top-0 z-50 h-0">
-      <div className="mx-auto flex max-w-6xl items-start justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex max-w-[88rem] items-start justify-between gap-4 px-5 sm:px-8 lg:px-12">
         {/* Tab logo putih menggantung */}
         <Link
           href="/"
@@ -119,7 +119,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-4 mt-3 rounded-3xl border border-brand-100/20 bg-brand-800/95 p-3 shadow-lift backdrop-blur-xl sm:mx-6 xl:hidden"
+            className="mx-5 mt-3 rounded-3xl border border-brand-100/20 bg-brand-800/95 p-3 shadow-lift backdrop-blur-xl sm:mx-8 xl:hidden"
           >
             <ul className="flex flex-col">
               {navItems.map((item) => (

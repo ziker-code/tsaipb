@@ -38,7 +38,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
   return (
     <>
       <PhotoHero image={heroBg} className="pb-16 pt-40 sm:pb-24 sm:pt-48">
-        <Container className="relative max-w-3xl">
+        <Container narrow className="relative">
           <Link href="/berita" className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-white">
             <Icon name="arrow-back" className="size-4" aria-hidden="true" /> Semua berita
           </Link>
@@ -60,7 +60,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
       </PhotoHero>
 
       <article className="py-14">
-        <Container className="max-w-3xl">
+        <Container narrow>
           {post.cover_url && (
             <div className="relative mb-10 aspect-video overflow-hidden rounded-[var(--radius-card)]">
               <Image src={post.cover_url} alt={post.title} fill sizes="(min-width: 768px) 768px, 100vw" className="object-cover" priority />

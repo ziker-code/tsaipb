@@ -5,6 +5,8 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | v2.4: margin kiri-kanan rapat (wadah 1408px, ±56px di layar 1440), teks & kartu melebar, eyebrow dihapus | ✅ Live | [updates/2026-11-25-v2.4-margin.md](updates/2026-11-25-v2.4-margin.md) |
+| 2026-11-25 | Rencana revisi v2.4: margin kiri-kanan lebih rapat (wadah 1408px, teks & grid memenuhi lebar) | ✅ Disetujui (sesuai desain tim) | [REVISI-V2.4-PLAN.md](REVISI-V2.4-PLAN.md) |
 | 2026-11-25 | v2.3: slogan "Berdaya, Berkarya, Digdaya!", Poppins, navbar tab logo + kaca hijau, Kenali & Cerita diperbesar, layout referensi, statistik dihapus | ✅ Live | [updates/2026-11-25-v2.3-revisi-beranda.md](updates/2026-11-25-v2.3-revisi-beranda.md) |
 | 2026-11-25 | Rencana revisi v2.3: slogan, Poppins, navbar kaca hijau, hero tanpa label, Kenali Lebih Dekat & Cerita diperbesar, layout referensi, hapus statistik | ✅ Disetujui | [REVISI-V2.3-PLAN.md](REVISI-V2.3-PLAN.md) |
 | 2026-11-25 | Riset: referensi website organisasi anti "AI slop" | 📚 Referensi | [REFERENSI-WEBSITE.md](REFERENSI-WEBSITE.md) |
