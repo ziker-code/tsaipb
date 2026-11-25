@@ -5,6 +5,7 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | v2.5: margin 40px per sisi (sesuai frame desain), navbar & tab logo lebih besar dan simetris | ✅ Live | [updates/2026-11-25-v2.5-margin-navbar.md](updates/2026-11-25-v2.5-margin-navbar.md) |
 | 2026-11-25 | v2.4: margin kiri-kanan rapat (wadah 1408px, ±56px di layar 1440), teks & kartu melebar, eyebrow dihapus | ✅ Live | [updates/2026-11-25-v2.4-margin.md](updates/2026-11-25-v2.4-margin.md) |
 | 2026-11-25 | Rencana revisi v2.4: margin kiri-kanan lebih rapat (wadah 1408px, teks & grid memenuhi lebar) | ✅ Disetujui (sesuai desain tim) | [REVISI-V2.4-PLAN.md](REVISI-V2.4-PLAN.md) |
 | 2026-11-25 | v2.3: slogan "Berdaya, Berkarya, Digdaya!", Poppins, navbar tab logo + kaca hijau, Kenali & Cerita diperbesar, layout referensi, statistik dihapus | ✅ Live | [updates/2026-11-25-v2.3-revisi-beranda.md](updates/2026-11-25-v2.3-revisi-beranda.md) |

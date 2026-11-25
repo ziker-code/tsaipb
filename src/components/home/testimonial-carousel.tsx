@@ -90,7 +90,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
         if (e.key === "ArrowRight") go(1);
         if (e.key === "ArrowLeft") go(-1);
       }}
-      className="[--card:min(82rem,90vw)] [--gap:2rem]"
+      className="[--card:min(91rem,94vw)] [--gap:2rem]"
     >
       <div
         className="relative cursor-grab touch-pan-y select-none overflow-x-clip active:cursor-grabbing"
@@ -151,7 +151,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
 /** Belum ada cerita yang tampil: ajakan berbagi (bukan testimoni rekaan), ukuran sama dengan kartu cerita. */
 function EmptyInvite() {
   return (
-    <div className="mx-auto w-[min(82rem,90vw)]">
+    <div className="mx-auto w-[min(91rem,94vw)]">
       <Shell photo={<CardPhoto alt="" />}>
         <Icon name="chatbubble-ellipses-outline" className="size-7 text-gold-300" />
         <p className="mt-6 text-2xl font-light leading-relaxed sm:text-3xl">Bagikan pengalaman Anda belajar, bertumbuh, dan berkontribusi bersama TSA IPB.</p>

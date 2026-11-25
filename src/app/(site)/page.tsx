@@ -88,7 +88,7 @@ export default async function HomePage() {
               </span>
             </a>
           </Reveal>
-          <div className="px-5 sm:px-8 lg:pl-0 lg:pr-12">
+          <div className="px-5 sm:px-8 lg:pl-0 lg:pr-10">
             <SectionHeading size="md" title="Kenali Lebih Dekat TSA IPB" />
             <ScrollHighlight
               className="mt-6 text-xl font-light leading-relaxed text-brand-900 sm:text-2xl"
@@ -243,7 +243,7 @@ export default async function HomePage() {
 
       {/* ───────────── FAQ (gaya referensi) ───────────── */}
       <section className="px-3 sm:px-6">
-        <RiseOnScroll className="mx-auto max-w-[88rem] rounded-[2rem] bg-brand-950 py-20 text-white sm:py-28">
+        <RiseOnScroll className="mx-auto max-w-[96rem] rounded-[2rem] bg-brand-950 py-20 text-white sm:py-28">
           <Container className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
             <div>
               <h2 className="text-4xl font-light leading-[1.08] text-gold-300 sm:text-5xl">

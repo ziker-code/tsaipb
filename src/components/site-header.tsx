@@ -42,13 +42,13 @@ export function SiteHeader() {
   return (
     // h-0: header mengambang di atas konten; section pertama tiap halaman memberi padding-top.
     <header className="sticky top-0 z-50 h-0">
-      <div className="mx-auto flex max-w-[88rem] items-start justify-between gap-4 px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-[96rem] items-start justify-between gap-4 px-5 sm:px-8 lg:px-10">
         {/* Tab logo putih menggantung */}
         <Link
           href="/"
           aria-label="TSA IPB, ke Beranda"
           className={cn(
-            "block shrink-0 origin-top-left rounded-b-2xl bg-white px-3 pb-3 pt-5 shadow-card transition-transform duration-500 motion-reduce:transition-none",
+            "block shrink-0 origin-top-left rounded-b-[1.25rem] bg-white px-3 pb-3 pt-5 shadow-card transition-transform duration-500 motion-reduce:transition-none sm:px-4 sm:pb-4 sm:pt-6",
             scrolled && "scale-[0.82]",
             FOCUS,
           )}
@@ -59,12 +59,12 @@ export function SiteHeader() {
             width={1200}
             height={812}
             priority
-            className="h-12 w-auto sm:h-14"
+            className="h-12 w-auto sm:h-[4.5rem]"
           />
         </Link>
 
         {/* Pill navigasi kaca hijau */}
-        <div className={cn("mt-3 hidden items-center gap-1 rounded-2xl p-1.5 xl:flex", glass)}>
+        <div className={cn("mt-6 hidden items-center gap-1 rounded-[1.25rem] p-2 xl:flex", glass)}>
           <nav aria-label="Navigasi utama">
             <ul className="flex items-center">
               {navItems.map((item) => {
@@ -75,7 +75,7 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "block whitespace-nowrap rounded-xl px-3.5 py-2 text-[13px] font-medium transition-colors duration-300",
+                        "block whitespace-nowrap rounded-xl px-4 py-3.5 text-[15px] font-medium transition-colors duration-300",
                         active ? "bg-white/15 text-white" : "text-white/85 hover:bg-white/10 hover:text-white",
                         FOCUS,
                       )}
@@ -90,7 +90,7 @@ export function SiteHeader() {
           <Link
             href={ctaItem.href}
             className={cn(
-              "ml-1 whitespace-nowrap rounded-xl border border-brand-100/60 px-4 py-2 text-[13px] font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-brand-800",
+              "ml-2 whitespace-nowrap rounded-xl border border-brand-100/60 px-5 py-3 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-brand-800",
               FOCUS,
             )}
           >
@@ -104,7 +104,7 @@ export function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Tutup menu" : "Buka menu"}
-          className={cn("mt-3 grid size-11 place-items-center rounded-2xl text-white xl:hidden", glass, FOCUS)}
+          className={cn("mt-4 grid size-12 place-items-center rounded-2xl text-white sm:mt-6 xl:hidden", glass, FOCUS)}
         >
           <Icon name={open ? "close" : "menu"} className="size-6" />
         </button>
