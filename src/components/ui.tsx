@@ -13,7 +13,7 @@ export function Container({ className, children }: { className?: string; childre
 }
 
 /** Hero halaman dalam: foto bersama TSA IPB + overlay gelap, menyusut ke kartu saat di-scroll. */
-export function PageHero({ title, subtitle = "TSA IPB 2026 · Berdaya, Berkarya, Digdaya", children }: { title: string; subtitle?: string; children?: ReactNode }) {
+export function PageHero({ title, subtitle = "TSA IPB 2026, Berdaya, Berkarya, Digdaya!", children }: { title: string; subtitle?: string; children?: ReactNode }) {
   return (
     <PhotoHero image={heroBg} className="pb-20 pt-40 sm:pb-28 sm:pt-52">
       <Container>
@@ -34,8 +34,11 @@ export function SectionHeading({
   align = "left",
   className,
   tone = "dark",
+  size = "lg",
 }: {
   eyebrow?: string;
+  /** "md" = gaya referensi Beranda: judul tebal ukuran sedang + deskripsi kecil */
+  size?: "lg" | "md";
   title: string;
   description?: string;
   align?: "left" | "center";
@@ -45,10 +48,17 @@ export function SectionHeading({
   return (
     <Reveal className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
       {eyebrow && <p className={cn("text-xs font-medium uppercase tracking-[0.25em]", tone === "dark" ? "text-gold-600" : "text-gold-300")}>{eyebrow}</p>}
-      <h2 className={cn("mt-3 text-3xl font-light leading-tight sm:text-[2.6rem]", tone === "dark" ? "text-brand-900" : "text-white")}>
+      <h2
+        className={cn(
+          eyebrow && "mt-3",
+          size === "md" ? "text-2xl font-semibold leading-snug sm:text-[1.75rem]" : "text-3xl font-light leading-tight sm:text-[2.6rem]",
+          "min-w-0 [overflow-wrap:break-word]",
+          tone === "dark" ? "text-brand-900" : "text-white",
+        )}
+      >
         <MaskReveal>{title}</MaskReveal>
       </h2>
-      {description && <p className={cn("mt-3 max-w-xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
+      {description && <p className={cn(size === "md" ? "mt-2 max-w-xl text-sm leading-relaxed" : "mt-3 max-w-xl leading-relaxed", align === "center" && "mx-auto", tone === "dark" ? "text-muted" : "text-white/70")}>{description}</p>}
     </Reveal>
   );
 }

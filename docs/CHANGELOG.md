@@ -5,6 +5,9 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | v2.3: slogan "Berdaya, Berkarya, Digdaya!", Poppins, navbar tab logo + kaca hijau, Kenali & Cerita diperbesar, layout referensi, statistik dihapus | ✅ Live | [updates/2026-11-25-v2.3-revisi-beranda.md](updates/2026-11-25-v2.3-revisi-beranda.md) |
+| 2026-11-25 | Rencana revisi v2.3: slogan, Poppins, navbar kaca hijau, hero tanpa label, Kenali Lebih Dekat & Cerita diperbesar, layout referensi, hapus statistik | ✅ Disetujui | [REVISI-V2.3-PLAN.md](REVISI-V2.3-PLAN.md) |
+| 2026-11-25 | Riset: referensi website organisasi anti "AI slop" | 📚 Referensi | [REFERENSI-WEBSITE.md](REFERENSI-WEBSITE.md) |
 | 2026-11-24 | v2.2: Beranda bagian bawah sesuai referensi (carousel cerita fokus-tengah, program, kisah, kabar) + admin Cerita Mereka | ✅ Live | [updates/2026-11-24-v2.2-beranda-bawah.md](updates/2026-11-24-v2.2-beranda-bawah.md) |
 | 2026-11-24 | Rencana: Beranda bagian bawah (layout referensi) + fitur Bagikan Cerita | ✅ Disetujui (cerita via admin) | [updates/2026-11-24-plan-beranda-bawah.md](updates/2026-11-24-plan-beranda-bawah.md) |
 | 2026-11-21 | v2.1: Foto bersama sebagai hero (overlay 50%), scroll motion lebih kaya (Lenis, hero menyusut, pita & panel scroll-linked), hijau lebih tua | ✅ Live | [updates/2026-11-21-v2.1-foto-scroll.md](updates/2026-11-21-v2.1-foto-scroll.md) |
@@ -16,3 +19,4 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 - [PRD.md](PRD.md) — kebutuhan produk (v1.1)
 - [FRONTEND-PLAN.md](FRONTEND-PLAN.md) — rencana frontend & motion (v2)
 - [HOME-LOWER-PLAN.md](HOME-LOWER-PLAN.md) — rencana Beranda bagian bawah + Bagikan Cerita
+- [REFERENSI-WEBSITE.md](REFERENSI-WEBSITE.md) — referensi website organisasi yang layak dicontoh

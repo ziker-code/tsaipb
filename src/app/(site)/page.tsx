@@ -3,13 +3,12 @@ import { getDivisions, getFeaturedPrograms, getGallery, getPosts, getSettings, g
 import { youtubeThumb } from "@/lib/format";
 import { brandOf } from "@/lib/divisions";
 import { faqs } from "@/lib/faq";
-import { NewsFeature, NewsRow, ProgramTile, StoryCard } from "@/components/cards";
+import { NewsFeature, NewsFeatureSkeleton, NewsRow, NewsRowSkeleton, ProgramTile, StoryCard, StorySkeleton } from "@/components/cards";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 import { IndonesiaMap } from "@/components/home/indonesia-map";
 import { Icon } from "@/components/icon";
 import { Accordion } from "@/components/motion/accordion";
 import { Carousel } from "@/components/motion/carousel";
-import { CountUp } from "@/components/motion/count-up";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { LineReveal, ScrollHighlight, WordsReveal } from "@/components/motion/text";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
@@ -35,15 +34,10 @@ export default async function HomePage() {
   return (
     <>
       {/* ───────────── Hero (foto bersama + overlay 50%) ───────────── */}
-      <PhotoHero image={heroBg} className="flex min-h-[100svh] flex-col justify-end pb-44 pt-36 sm:pb-52">
+      <PhotoHero image={heroBg} className="flex min-h-[100svh] flex-col justify-end pb-24 pt-40 sm:pb-32">
         <Container>
-          <Reveal y={12}>
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-3 py-1 text-xs tracking-wide text-white/85 backdrop-blur">
-              <span className="size-1.5 rounded-full bg-gold-300" /> Tanoto Scholars Association · IPB University
-            </p>
-          </Reveal>
-          <h1 className="mt-6 max-w-4xl text-5xl font-light leading-[1.02] sm:text-7xl lg:text-8xl">
-            <LineReveal lines={["Berkarya, Berdaya,", <span key="d" className="font-semibold text-gold-300">DIGDAYA!</span>]} delay={0.15} />
+          <h1 className="max-w-4xl text-5xl font-light leading-[1.05] sm:text-7xl lg:text-8xl">
+            <LineReveal lines={["Berdaya, Berkarya,", <span key="d" className="font-semibold text-gold-300">DIGDAYA!</span>]} delay={0.15} />
           </h1>
           <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <Reveal delay={0.5} className="max-w-lg">
@@ -55,7 +49,6 @@ export default async function HomePage() {
             <Reveal delay={0.65} className="flex flex-wrap gap-3">
               <ButtonLink href="/program" variant="light">
                 Program Kami
-                <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </ButtonLink>
               <ButtonLink href="/tentang" variant="outline">
                 Kenali TSA IPB
@@ -65,63 +58,49 @@ export default async function HomePage() {
         </Container>
       </PhotoHero>
 
-      {/* ───────────── Statistik ───────────── */}
-      <section aria-label="Statistik" className="relative -mt-28 sm:-mt-32">
-        <Container>
-          <Stagger as="ul" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-            {settings.stats.map((s) => (
-              <StaggerItem as="li" key={s.label} className="rounded-[var(--radius-card)] bg-white p-6 text-center shadow-card ring-1 ring-line">
-                <CountUp value={s.value} className="block text-4xl font-light text-brand-700 sm:text-5xl" />
-                <p className="mt-2 text-sm text-muted">{s.label}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
-
-      {/* ───────────── Kenali lebih dekat ───────────── */}
+      {/* ───────────── Kenali lebih dekat: video lebar menempel ke tepi kiri ───────────── */}
       <section className="py-24 sm:py-32">
-        <Container className="grid items-center gap-12 md:grid-cols-[1fr_1.1fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:gap-16">
           <Reveal>
             <a
               href={settings.profile_video_url || undefined}
               target="_blank"
               rel="noopener noreferrer"
               aria-disabled={!settings.profile_video_url}
-              className="group relative block aspect-video overflow-hidden rounded-[var(--radius-card)] bg-brand-950 aria-disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+              className="group relative block aspect-video overflow-hidden bg-brand-950 aria-disabled:pointer-events-none lg:rounded-r-[2rem] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
             >
               {videoThumb ? (
-                <Image src={videoThumb} alt="" fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover opacity-60 transition-[opacity,transform] duration-700 motion-reduce:transition-none group-hover:scale-105 group-hover:opacity-80" />
+                <Image src={videoThumb} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover opacity-70 transition-[opacity,transform] duration-700 motion-reduce:transition-none group-hover:scale-105 group-hover:opacity-90" />
               ) : (
-                <Image src="/brand/logo-mark.webp" alt="" width={80} height={150} className="absolute right-6 top-6 h-24 w-auto opacity-20" />
+                <Image src={heroBg} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover opacity-40" />
               )}
-              <span className="absolute inset-0 flex flex-col items-start justify-end p-6 text-white">
-                <span className="text-sm text-white/65">Profil TSA IPB</span>
-                <span className="mt-1 text-lg font-light">{settings.profile_video_url ? "Tonton video profil kami" : "Video profil segera hadir"}</span>
-              </span>
-              {settings.profile_video_url && (
-                <span className="absolute right-6 top-6 grid size-14 place-items-center rounded-full bg-white/15 backdrop-blur transition-[transform,background-color,color] duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
-                  <Icon name="play" className="ml-0.5 size-5" />
+              <span className="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-brand-950/20 to-transparent" />
+              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 text-white sm:p-10">
+                <span>
+                  <span className="block text-sm text-white/70">Profil TSA IPB</span>
+                  <span className="mt-1 block text-2xl font-light sm:text-3xl">{settings.profile_video_url ? "Tonton video profil kami" : "Video profil segera hadir"}</span>
                 </span>
-              )}
+                {settings.profile_video_url && (
+                  <span className="grid size-16 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur transition-[transform,background-color,color] duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
+                    <Icon name="play" className="ml-0.5 size-6" />
+                  </span>
+                )}
+              </span>
             </a>
           </Reveal>
-          <div>
-            <Reveal>
-              <p className="text-sm font-medium text-gold-600">Kenali lebih dekat</p>
-            </Reveal>
+          <div className="px-5 sm:px-8 lg:max-w-xl lg:pl-0 lg:pr-10">
+            <SectionHeading size="md" title="Kenali Lebih Dekat TSA IPB" />
             <ScrollHighlight
-              className="mt-5 text-2xl font-light leading-snug text-brand-900 sm:text-[1.85rem]"
-              text="Tanoto Scholars Association (TSA) IPB adalah komunitas penerima beasiswa TELADAN dari Tanoto Foundation di IPB University. Kami hadir sebagai ruang untuk belajar, bertumbuh, dan berkolaborasi — mengubah semangat berkarya menjadi kontribusi yang bermakna."
+              className="mt-6 text-xl font-light leading-relaxed text-brand-900 sm:text-2xl"
+              text="Tanoto Scholars Association (TSA) IPB adalah komunitas penerima beasiswa TELADAN dari Tanoto Foundation di IPB University. Kami hadir sebagai ruang untuk belajar, bertumbuh, dan berkolaborasi, mengubah semangat berkarya menjadi kontribusi yang bermakna."
             />
             <Reveal className="mt-8">
               <ButtonLink href="/tentang" variant="ghost">
                 Selengkapnya tentang kami
-                <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </ButtonLink>
             </Reveal>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* ───────────── Pita sorotan: dua baris bergerak berlawanan mengikuti scroll ───────────── */}
@@ -185,29 +164,29 @@ export default async function HomePage() {
         </Container>
       </ExpandOnScroll>
 
-      {/* ───────────── Cerita Mereka (carousel fokus-tengah, sesuai referensi) ───────────── */}
-      <section className="py-24 sm:py-32">
+      {/* ───────────── Cerita Mereka (kartu lebar ala referensi) ───────────── */}
+      <section className="overflow-x-clip py-24 sm:py-28">
         <Container>
-          <SectionHeading title="Cerita Mereka tentang TSA IPB" description="Pengalaman belajar, bertumbuh, dan berkontribusi bersama TSA IPB." />
+          <SectionHeading size="md" title="Cerita Mereka tentang TSA IPB" description="Pengalaman belajar, bertumbuh, dan berkontribusi bersama TSA IPB." />
         </Container>
-        <div className="mt-12">
+        <div className="mt-10">
           <TestimonialCarousel items={testimonials} />
         </div>
       </section>
 
       {/* ───────────── Program TSA IPB ───────────── */}
       {featured.length > 0 && (
-        <section className="bg-canvas py-24 sm:py-32">
+        <section className="py-16 sm:py-20">
           <Container>
             <div className="flex flex-wrap items-end justify-between gap-6">
-              <SectionHeading title="Program TSA IPB" description="Jelajahi ruang belajar, kolaborasi, dan pengabdian bersama TSA IPB." />
+              <SectionHeading size="md" title="Program TSA IPB" description="Jelajahi ruang belajar, kolaborasi, dan pengabdian bersama TSA IPB." />
               <Reveal>
                 <ButtonLink href="/program" variant="ghost">
                   Semua program
                 </ButtonLink>
               </Reveal>
             </div>
-            <Stagger as="ul" className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))]">
+            <Stagger as="ul" className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))]">
               {featured.map((p) => (
                 <StaggerItem as="li" key={p.id}>
                   <ProgramTile program={p} division={divisionById.get(p.division_id)} />
@@ -218,59 +197,49 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ───────────── Kisah Inspiratif ───────────── */}
-      {stories.length > 0 && (
-        <section className="overflow-x-clip py-24 sm:py-32">
-          <Container>
-            <Carousel
-              label="Kisah inspiratif"
-              header={<SectionHeading title="Kisah Inspiratif" description="Temukan inspirasi dari perjalanan dan semangat para Tanoto Scholars." />}
-              actions={
-                <ButtonLink href="/berita" className="mr-2">
-                  Lihat semua
-                </ButtonLink>
-              }
-              controlsClassName="hidden sm:flex"
-            >
-              {stories.map((p) => (
-                <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
-                  <StoryCard post={p} />
-                </li>
-              ))}
-            </Carousel>
-          </Container>
-        </section>
-      )}
+      {/* ───────────── Kisah Inspiratif (selalu tampil; kerangka bila belum ada) ───────────── */}
+      <section className="overflow-x-clip py-16 sm:py-20">
+        <Container>
+          <Carousel
+            label="Kisah inspiratif"
+            header={<SectionHeading size="md" title="Kisah Inspiratif" description="Temukan inspirasi dari perjalanan dan semangat para Tanoto Scholars." />}
+            actions={
+              <ButtonLink href="/berita" className="mr-2 px-4 py-2">
+                Lihat Semua
+              </ButtonLink>
+            }
+          >
+            {stories.length
+              ? stories.map((p) => (
+                  <li key={p.id} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
+                    <StoryCard post={p} />
+                  </li>
+                ))
+              : [0, 1, 2, 3, 4].map((i) => (
+                  <li key={i} className="w-[78%] shrink-0 snap-start sm:w-[17rem]">
+                    <StorySkeleton label={i === 0 ? "Kisah pertama segera hadir" : undefined} />
+                  </li>
+                ))}
+          </Carousel>
+        </Container>
+      </section>
 
-      {/* ───────────── Kabar Terbaru ───────────── */}
-      {headline && (
-        <section className={stories.length ? "pb-24 sm:pb-32" : "py-24 sm:py-32"}>
-          <Container>
-            <div className="flex flex-wrap items-end justify-between gap-6">
-              <SectionHeading title="Kabar Terbaru" description="Ikuti kabar kegiatan, kolaborasi, dan perkembangan terkini TSA IPB." />
-              <Reveal>
-                <ButtonLink href="/berita" variant="ghost">
-                  Semua berita
-                </ButtonLink>
-              </Reveal>
-            </div>
-            <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-              <Reveal className="min-w-0">
-                <NewsFeature post={headline} />
-              </Reveal>
-              {moreNews.length > 0 && (
-                <Stagger as="ul" className="grid content-start gap-3">
-                  {moreNews.map((p) => (
-                    <StaggerItem as="li" key={p.id}>
-                      <NewsRow post={p} />
-                    </StaggerItem>
-                  ))}
-                </Stagger>
-              )}
-            </div>
-          </Container>
-        </section>
-      )}
+      {/* ───────────── Kabar Terbaru (selalu tampil; kerangka bila belum ada) ───────────── */}
+      <section className="pb-24 pt-8 sm:pb-28">
+        <Container>
+          <SectionHeading size="md" title="Kabar Terbaru" description="Ikuti kabar kegiatan, kolaborasi, dan perkembangan terkini TSA IPB." />
+          <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+            <Reveal className="min-w-0">{headline ? <NewsFeature post={headline} /> : <NewsFeatureSkeleton label="Kabar pertama segera hadir" />}</Reveal>
+            <Stagger as="ul" className="grid content-start gap-3">
+              {(moreNews.length ? moreNews : [null, null, null]).map((p, i) => (
+                <StaggerItem as="li" key={p?.id ?? i}>
+                  {p ? <NewsRow post={p} /> : <NewsRowSkeleton />}
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </Container>
+      </section>
 
       {/* ───────────── FAQ (gaya referensi) ───────────── */}
       <section className="px-3 sm:px-6">

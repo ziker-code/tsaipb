@@ -1,7 +1,7 @@
 export const site = {
   name: "TSA IPB",
   fullName: "Tanoto Scholars Association IPB",
-  tagline: "Berdaya, Berkarya, Digdaya",
+  tagline: "Berdaya, Berkarya, Digdaya!",
   description:
     "Tanoto Scholars Association IPB — wadah kolaborasi dan pengembangan diri mahasiswa penerima beasiswa Tanoto Foundation di IPB University.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
@@ -25,7 +25,6 @@ export const navItems = [
   { label: "Program Kerja", href: "/program" },
   { label: "Berita & Blog", href: "/berita" },
   { label: "Galeri", href: "/galeri" },
-  { label: "Kontak", href: "/kontak" },
 ] as const;
 
-export const ctaItem = { label: "Hubungi Kami", href: "/kontak#form" } as const;
+export const ctaItem = { label: "Hubungi Kami", href: "/kontak" } as const;

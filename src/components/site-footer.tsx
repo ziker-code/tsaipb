@@ -100,7 +100,7 @@ export function SiteFooter() {
           </span>
         </div>
         <p className="text-xs text-white/55">
-          © 2026 TSA IPB. Hak cipta dilindungi. <span className="text-gold-300">Berkarya, Berdaya, DIGDAYA!</span>
+          © 2026 TSA IPB. Hak cipta dilindungi. <span className="text-gold-300">Berdaya, Berkarya, Digdaya!</span>
         </p>
       </div>
     </footer>

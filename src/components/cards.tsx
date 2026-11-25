@@ -155,3 +155,34 @@ export function NewsRow({ post }: { post: Post }) {
     </Link>
   );
 }
+
+/* ───────── Kerangka "segera hadir" (tanpa judul/tanggal palsu) ───────── */
+
+export function StorySkeleton({ label }: { label?: string }) {
+  return (
+    <div className="relative aspect-[5/4] overflow-hidden rounded-[var(--radius-card)] bg-line">
+      <span className="absolute inset-0 bg-gradient-to-b from-brand-800 via-brand-800/60 to-transparent" />
+      {label && <span className="absolute inset-x-0 top-0 p-5 font-medium text-white">{label}</span>}
+    </div>
+  );
+}
+
+export function NewsFeatureSkeleton({ label }: { label: string }) {
+  return (
+    <div className="relative h-full min-h-80 overflow-hidden rounded-[var(--radius-card)] bg-line">
+      <span className="absolute inset-x-0 bottom-0 p-6 text-xl font-medium text-brand-900 sm:p-8 sm:text-2xl">{label}</span>
+    </div>
+  );
+}
+
+export function NewsRowSkeleton() {
+  return (
+    <div aria-hidden="true" className="grid grid-cols-[8rem_minmax(0,1fr)] items-center gap-5 p-2">
+      <span className="aspect-[4/3] rounded-xl bg-line" />
+      <span className="grid gap-2">
+        <span className="h-3.5 w-4/5 rounded-full bg-line" />
+        <span className="h-3 w-2/5 rounded-full bg-line" />
+      </span>
+    </div>
+  );
+}

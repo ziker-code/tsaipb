@@ -30,8 +30,8 @@
   --color-surface: #ffffff;
   --color-canvas: #f5f7f4;
 
-  --font-sans: var(--font-sora);
-  --font-display: var(--font-sora);
+  --font-sans: var(--font-poppins);
+  --font-display: var(--font-poppins);
 
   --radius-card: 1.5rem;
 
@@ -84,7 +84,7 @@ html {
 body {
   background: var(--color-surface);
   color: var(--color-ink);
-  font-family: var(--font-sora), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   font-feature-settings: "ss01";
 }
 
