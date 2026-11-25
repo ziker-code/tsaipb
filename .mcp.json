@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "imagekit-dam": {
+      "type": "http",
+      "url": "https://imagekit.io/mcp/dam"
+    },
+    "imagekit-admin": {
+      "type": "http",
+      "url": "https://imagekit.io/mcp/admin"
+    },
+    "imagekit-devtools": {
+      "type": "http",
+      "url": "https://devtools-mcp.imagekit.io/mcp"
+    }
+  }
+}

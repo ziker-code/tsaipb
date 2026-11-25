@@ -5,6 +5,7 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | Rencana: gambar via ImageKit (database tetap Supabase) + MCP ImageKit dipasang | 📝 Rencana, menunggu kunci API | [IMAGEKIT-PLAN.md](IMAGEKIT-PLAN.md) |
 | 2026-11-25 | v2.6: margin 24px, tab logo ukuran konstan, perbaikan spasi judul animasi (FAQ, visi) | ✅ Live | [updates/2026-11-25-v2.6-margin-logo-spasi.md](updates/2026-11-25-v2.6-margin-logo-spasi.md) |
 | 2026-11-25 | v2.5: margin 40px per sisi (sesuai frame desain), navbar & tab logo lebih besar dan simetris | ✅ Live | [updates/2026-11-25-v2.5-margin-navbar.md](updates/2026-11-25-v2.5-margin-navbar.md) |
 | 2026-11-25 | v2.4: margin kiri-kanan rapat (wadah 1408px, ±56px di layar 1440), teks & kartu melebar, eyebrow dihapus | ✅ Live | [updates/2026-11-25-v2.4-margin.md](updates/2026-11-25-v2.4-margin.md) |
