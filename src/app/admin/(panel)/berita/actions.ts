@@ -3,7 +3,8 @@
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin/auth";
-import { optStr, POST_CATEGORIES, slugify, storagePathFromUrl, str } from "@/lib/admin/utils";
+import { optStr, POST_CATEGORIES, slugify, str } from "@/lib/admin/utils";
+import { removeStoredImage } from "@/lib/admin/media";
 import { tags } from "@/lib/data";
 
 export type FormState = { error?: string };
@@ -51,8 +52,7 @@ export async function deletePost(fd: FormData) {
   const id = str(fd, "id");
   const { data } = await supabase.from("posts").select("cover_url").eq("id", id).maybeSingle();
   await supabase.from("posts").delete().eq("id", id);
-  const path = storagePathFromUrl(data?.cover_url);
-  if (path) await supabase.storage.from("media").remove([path]);
+  await removeStoredImage(supabase, data?.cover_url);
   updateTag(tags.posts);
   redirect("/admin/berita");
 }

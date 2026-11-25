@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@imagekit/next": "^2.1.6",
+    "@imagekit/nodejs": "^7.15.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.2",
     "@svg-maps/indonesia": "^2.0.0",

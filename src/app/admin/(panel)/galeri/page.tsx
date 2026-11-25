@@ -5,6 +5,8 @@ import { EmptyState } from "@/components/ui";
 import type { Division, GalleryItem, Program } from "@/lib/types";
 import { deleteGalleryItem } from "./actions";
 import { GalleryUploader } from "./uploader";
+import { countLegacyImages } from "./migrate-actions";
+import { MigratePanel } from "./migrate-panel";
 
 export const metadata = { title: "Galeri" };
 
@@ -17,12 +19,14 @@ export default async function AdminGalleryPage() {
   ]);
 
   const gallery = (items ?? []) as GalleryItem[];
+  const legacy = await countLegacyImages();
   const divisionName = new Map(((divisions ?? []) as Division[]).map((d) => [d.id, d.short_name]));
   const programName = new Map((programs ?? []).map((p) => [p.id, p.title]));
 
   return (
     <>
       <AdminPageHeader title="Galeri" description={`${gallery.length} foto. Foto baru tampil paling atas di halaman Galeri.`} />
+      {legacy > 0 && <MigratePanel count={legacy} />}
       <GalleryUploader divisions={(divisions ?? []) as Division[]} programs={(programs ?? []) as Program[]} />
 
       <div className="mt-8">

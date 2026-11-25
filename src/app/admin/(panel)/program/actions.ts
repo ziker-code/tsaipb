@@ -3,7 +3,8 @@
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin/auth";
-import { optStr, slugify, storagePathFromUrl, str } from "@/lib/admin/utils";
+import { optStr, slugify, str } from "@/lib/admin/utils";
+import { removeStoredImage } from "@/lib/admin/media";
 import { youtubeId } from "@/lib/format";
 import { tags } from "@/lib/data";
 
@@ -53,8 +54,7 @@ export async function deleteProgram(fd: FormData) {
   const id = str(fd, "id");
   const { data } = await supabase.from("programs").select("cover_url").eq("id", id).maybeSingle();
   await supabase.from("programs").delete().eq("id", id);
-  const path = storagePathFromUrl(data?.cover_url);
-  if (path) await supabase.storage.from("media").remove([path]);
+  await removeStoredImage(supabase, data?.cover_url);
   updateTag(tags.programs);
   updateTag(tags.gallery);
   redirect("/admin/program");

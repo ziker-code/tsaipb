@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@/components/icon";
 import type { Division, GalleryItem } from "@/lib/types";
@@ -86,7 +87,7 @@ export function GalleryGrid({ items, divisions }: { items: GalleryItem[]; divisi
             </>
           )}
           <figure className="max-h-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-            <Image src={current.image_url} alt={current.alt || current.caption || "Dokumentasi TSA IPB"} width={1600} height={1200} sizes="100vw" className="max-h-[80vh] w-auto rounded-lg object-contain" />
+            <MediaImage src={current.image_url} alt={current.alt || current.caption || "Dokumentasi TSA IPB"} width={1600} height={1200} sizes="100vw" className="max-h-[80vh] w-auto rounded-lg object-contain" />
             {current.caption && <figcaption className="mt-3 text-center text-sm text-white/80">{current.caption}</figcaption>}
           </figure>
         </div>

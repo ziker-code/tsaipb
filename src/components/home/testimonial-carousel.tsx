@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { Icon } from "@/components/icon";
@@ -16,7 +17,7 @@ function CardPhoto({ src, alt }: { src?: string | null; alt: string }) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-brand-900 md:aspect-auto md:h-full md:min-h-[22rem]">
       {src ? (
-        <Image src={src} alt={alt} fill sizes="(min-width: 768px) 40vw, 85vw" className="object-cover" />
+        <MediaImage src={src} alt={alt} fill sizes="(min-width: 768px) 40vw, 85vw" className="object-cover" />
       ) : (
         <>
           <Image src={heroBg} alt="" fill sizes="(min-width: 768px) 40vw, 85vw" className="object-cover" style={{ objectPosition: "50% 62%" }} />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import Link from "next/link";
 import type { Division, Post, Program } from "@/lib/types";
 import { formatDate, formatDateTime } from "@/lib/format";
@@ -60,7 +61,7 @@ export function PostCard({ post }: { post: Post }) {
     <Link href={`/berita/${post.slug}`} className="group flex h-full min-w-0 flex-col [overflow-wrap:anywhere]">
       <div className="relative aspect-[16/11] overflow-hidden rounded-[var(--radius-card)] bg-brand-100">
         {post.cover_url ? (
-          <Image src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
+          <MediaImage src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
         ) : (
           <Image src="/brand/logo-mark.webp" alt="" width={80} height={150} className="absolute inset-0 m-auto h-1/2 w-auto opacity-20" />
         )}
@@ -83,7 +84,7 @@ export function StoryCard({ post }: { post: Post }) {
   return (
     <Link href={`/berita/${post.slug}`} className="group relative block aspect-[5/4] overflow-hidden rounded-[var(--radius-card)] bg-line">
       {post.cover_url && (
-        <Image src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 25vw, 80vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
+        <MediaImage src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 25vw, 80vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
       )}
       <span className="absolute inset-0 bg-gradient-to-b from-brand-800 via-brand-800/60 to-transparent" />
       <span className="absolute inset-x-0 top-0 p-5 text-white">
@@ -108,7 +109,7 @@ export function ProgramTile({ program, division }: { program: Program; division?
     >
       <Parallax amount={8}>
         {program.cover_url ? (
-          <Image src={program.cover_url} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+          <MediaImage src={program.cover_url} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
         ) : (
           <Image src={brand.logo} alt="" width={220} height={220} className="absolute inset-0 m-auto h-1/3 w-auto object-contain transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-110" />
         )}
@@ -127,7 +128,7 @@ export function NewsFeature({ post }: { post: Post }) {
     <Link href={`/berita/${post.slug}`} className="group relative block h-full min-h-80 overflow-hidden rounded-[var(--radius-card)] bg-brand-100">
       {post.cover_url ? (
         <Parallax amount={6}>
-          <Image src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
+          <MediaImage src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
         </Parallax>
       ) : (
         <Image src="/brand/logo-mark.webp" alt="" width={120} height={225} className="absolute right-8 top-8 h-40 w-auto opacity-20" />
@@ -146,7 +147,7 @@ export function NewsRow({ post }: { post: Post }) {
   return (
     <Link href={`/berita/${post.slug}`} className="group grid grid-cols-[8rem_minmax(0,1fr)] items-center gap-5 rounded-2xl p-2 transition-colors duration-300 hover:bg-canvas">
       <span className="relative aspect-[4/3] overflow-hidden rounded-xl bg-brand-100">
-        {post.cover_url && <Image src={post.cover_url} alt="" fill sizes="128px" className="object-cover transition-transform duration-700 group-hover:scale-105" />}
+        {post.cover_url && <MediaImage src={post.cover_url} alt="" fill sizes="128px" className="object-cover transition-transform duration-700 group-hover:scale-105" />}
       </span>
       <span className="grid gap-2 [overflow-wrap:anywhere]">
         <span className="line-clamp-2 font-medium leading-snug text-brand-900">{post.title}</span>

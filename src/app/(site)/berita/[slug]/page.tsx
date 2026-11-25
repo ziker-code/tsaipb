@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icon";
@@ -63,7 +63,7 @@ export default async function PostPage({ params }: PageProps<"/berita/[slug]">) 
         <Container narrow>
           {post.cover_url && (
             <div className="relative mb-10 aspect-video overflow-hidden rounded-[var(--radius-card)]">
-              <Image src={post.cover_url} alt={post.title} fill sizes="(min-width: 768px) 768px, 100vw" className="object-cover" priority />
+              <MediaImage src={post.cover_url} alt={post.title} fill sizes="(min-width: 768px) 768px, 100vw" className="object-cover" priority />
             </div>
           )}
           <Markdown>{post.content}</Markdown>

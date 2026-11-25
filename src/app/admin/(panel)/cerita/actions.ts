@@ -3,7 +3,8 @@
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin/auth";
-import { optStr, storagePathFromUrl, str } from "@/lib/admin/utils";
+import { optStr, str } from "@/lib/admin/utils";
+import { removeStoredImage } from "@/lib/admin/media";
 import { tags } from "@/lib/data";
 
 export type FormState = { error?: string };
@@ -47,8 +48,7 @@ export async function deleteTestimonial(fd: FormData) {
   const id = str(fd, "id");
   const { data } = await supabase.from("testimonials").select("*").eq("id", id).maybeSingle();
   await supabase.from("testimonials").delete().eq("id", id);
-  const path = storagePathFromUrl((data as { photo_url?: string | null } | null)?.photo_url);
-  if (path) await supabase.storage.from("media").remove([path]);
+  await removeStoredImage(supabase, (data as { photo_url?: string | null } | null)?.photo_url);
   updateTag(tags.testimonials);
   redirect("/admin/cerita");
 }

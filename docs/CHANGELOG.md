@@ -5,6 +5,7 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | Integrasi ImageKit: upload admin, hapus file, CDN responsif, tombol migrasi gambar lama | 🧩 Kode siap, menunggu kunci API (belum deploy) | [updates/2026-11-25-imagekit-integrasi.md](updates/2026-11-25-imagekit-integrasi.md) |
 | 2026-11-25 | Rencana: gambar via ImageKit (database tetap Supabase) + MCP ImageKit dipasang | 📝 Rencana, menunggu kunci API | [IMAGEKIT-PLAN.md](IMAGEKIT-PLAN.md) |
 | 2026-11-25 | v2.6: margin 24px, tab logo ukuran konstan, perbaikan spasi judul animasi (FAQ, visi) | ✅ Live | [updates/2026-11-25-v2.6-margin-logo-spasi.md](updates/2026-11-25-v2.6-margin-logo-spasi.md) |
 | 2026-11-25 | v2.5: margin 40px per sisi (sesuai frame desain), navbar & tab logo lebih besar dan simetris | ✅ Live | [updates/2026-11-25-v2.5-margin-navbar.md](updates/2026-11-25-v2.5-margin-navbar.md) |

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import { getDivisions, getFeaturedPrograms, getGallery, getPosts, getSettings, getTestimonials } from "@/lib/data";
 import { youtubeThumb } from "@/lib/format";
 import { brandOf } from "@/lib/divisions";
@@ -111,7 +112,7 @@ export default async function HomePage() {
               photos.length >= 4
                 ? photos.map((g, i) => (
                     <div key={`${row}-${rep}-${g.id}`} aria-hidden={rep > 0 || row > 0} className="relative h-52 w-80 shrink-0 overflow-hidden rounded-[var(--radius-card)] sm:h-64 sm:w-[26rem]">
-                      <Image src={photos[(i + row * 3) % photos.length].image_url} alt={rep === 0 && row === 0 ? g.alt : ""} fill sizes="416px" className="object-cover" />
+                      <MediaImage src={photos[(i + row * 3) % photos.length].image_url} alt={rep === 0 && row === 0 ? g.alt : ""} fill sizes="416px" className="object-cover" />
                     </div>
                   ))
                 : divisions.map((_, i) => {

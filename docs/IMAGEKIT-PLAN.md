@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | **Draft, menunggu kunci API & konfirmasi (§5)** |
+| Status | **Kode selesai; menunggu kunci API untuk deploy & migrasi** |
 | Tanggal | 25 November 2026 |
 | Keputusan user | Database & login **tetap Supabase**; gambar dipindah ke **ImageKit.io** |
 

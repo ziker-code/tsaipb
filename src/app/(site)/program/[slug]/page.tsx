@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { MediaImage } from "@/components/media-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icon";
@@ -79,7 +80,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
           <div>
             {program.cover_url && (
               <div className="relative mb-8 aspect-video overflow-hidden rounded-[var(--radius-card)]">
-                <Image src={program.cover_url} alt={program.title} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" priority />
+                <MediaImage src={program.cover_url} alt={program.title} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" priority />
               </div>
             )}
             {program.content ? (
@@ -94,7 +95,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
                 <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {photos.map((g) => (
                     <li key={g.id} className="group relative aspect-square overflow-hidden rounded-2xl bg-brand-50">
-                      <Image src={g.image_url} alt={g.alt || g.caption || program.title} fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <MediaImage src={g.image_url} alt={g.alt || g.caption || program.title} fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     </li>
                   ))}
                 </ul>
