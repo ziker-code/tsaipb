@@ -42,16 +42,13 @@ export function SiteHeader() {
   return (
     // h-0: header mengambang di atas konten; section pertama tiap halaman memberi padding-top.
     <header className="sticky top-0 z-50 h-0">
-      <div className="mx-auto flex max-w-[96rem] items-start justify-between gap-4 px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[96rem] items-start justify-between gap-4 px-4 sm:px-6 lg:px-6">
         {/* Tab logo putih menggantung */}
         <Link
           href="/"
           aria-label="TSA IPB, ke Beranda"
-          className={cn(
-            "block shrink-0 origin-top-left rounded-b-[1.25rem] bg-white px-3 pb-3 pt-5 shadow-card transition-transform duration-500 motion-reduce:transition-none sm:px-4 sm:pb-4 sm:pt-6",
-            scrolled && "scale-[0.82]",
-            FOCUS,
-          )}
+          // Ukuran konstan (= ukuran setelah di-scroll pada versi sebelumnya); tidak mengecil saat scroll.
+          className={cn("block shrink-0 rounded-b-[1.25rem] bg-white px-3 pb-3 pt-4 shadow-card sm:px-3.5 sm:pb-3.5 sm:pt-5", FOCUS)}
         >
           <Image
             src="/brand/logo-tsa.webp"
@@ -59,7 +56,7 @@ export function SiteHeader() {
             width={1200}
             height={812}
             priority
-            className="h-12 w-auto sm:h-[4.5rem]"
+            className="h-11 w-auto sm:h-[3.75rem]"
           />
         </Link>
 
@@ -119,7 +116,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-5 mt-3 rounded-3xl border border-brand-100/20 bg-brand-800/95 p-3 shadow-lift backdrop-blur-xl sm:mx-8 xl:hidden"
+            className="mx-4 mt-3 rounded-3xl border border-brand-100/20 bg-brand-800/95 p-3 shadow-lift backdrop-blur-xl sm:mx-6 xl:hidden"
           >
             <ul className="flex flex-col">
               {navItems.map((item) => (

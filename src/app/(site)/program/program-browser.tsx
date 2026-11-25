@@ -22,7 +22,7 @@ export function ProgramBrowser({ divisions, programs, initialSlug }: Props) {
 
   return (
     <div>
-      <div role="tablist" aria-label="Pilih divisi" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0">
+      <div role="tablist" aria-label="Pilih divisi" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0">
         {divisions.map((d) => {
           const b = brandOf(d.slug);
           const on = d.id === active;

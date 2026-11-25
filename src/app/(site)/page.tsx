@@ -88,7 +88,7 @@ export default async function HomePage() {
               </span>
             </a>
           </Reveal>
-          <div className="px-5 sm:px-8 lg:pl-0 lg:pr-10">
+          <div className="px-4 sm:px-6 lg:pl-0 lg:pr-6">
             <SectionHeading size="md" title="Kenali Lebih Dekat TSA IPB" />
             <ScrollHighlight
               className="mt-6 text-xl font-light leading-relaxed text-brand-900 sm:text-2xl"

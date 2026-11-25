@@ -41,7 +41,7 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-auto bg-brand-800 text-white">
-      <div className="mx-auto grid max-w-[96rem] gap-12 px-5 pb-12 pt-20 sm:px-8 lg:px-10 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mx-auto grid max-w-[96rem] gap-12 px-4 pb-12 pt-20 sm:px-6 lg:px-6 lg:grid-cols-[1.3fr_1fr]">
         <div>
           <Link href="/" aria-label="TSA IPB — Beranda" className="inline-flex items-center gap-3">
             <Image src="/brand/logo-mark.webp" alt="" width={32} height={60} className="h-14 w-auto brightness-0 invert" />
@@ -90,7 +90,7 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="mx-auto flex max-w-[96rem] flex-wrap items-center justify-between gap-6 border-t border-white/10 px-5 py-6 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[96rem] flex-wrap items-center justify-between gap-6 border-t border-white/10 px-4 py-6 sm:px-6 lg:px-6">
         <div className="flex items-center gap-6 opacity-80">
           <Image src="/brand/logo-teladan-white.webp" alt="TELADAN" width={110} height={26} className="h-5 w-auto" />
           <span className="rounded-md bg-white px-2 py-1">

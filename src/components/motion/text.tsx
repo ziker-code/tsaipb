@@ -2,7 +2,7 @@
 
 import * as m from "motion/react-m";
 import { useScroll, useTransform, type MotionValue } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import { Fragment, useRef, type ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,12 +15,7 @@ export function LineReveal({ lines, className, delay = 0 }: { lines: ReactNode[]
     <span className={className}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.08em]">
-          <m.span
-            className="block"
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.9, delay: delay + i * 0.12, ease: EASE }}
-          >
+          <m.span className="block" initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ duration: 0.9, delay: delay + i * 0.12, ease: EASE }}>
             {line}
           </m.span>
         </span>
@@ -42,15 +37,20 @@ export function WordsReveal({ text, className }: { text: string; className?: str
       aria-label={text}
     >
       {words.map((w, i) => (
-        <m.span
-          key={i}
-          aria-hidden="true"
-          className="inline-block"
-          variants={{ hidden: { opacity: 0, y: "0.4em", filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } } }}
-        >
-          {w}
+        // Spasi diletakkan DI LUAR span inline-block; spasi di dalamnya terbuang sehingga kata menempel.
+        <Fragment key={i}>
+          <m.span
+            aria-hidden="true"
+            className="inline-block"
+            variants={{
+              hidden: { opacity: 0, y: "0.4em", filter: "blur(6px)" },
+              show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
+            }}
+          >
+            {w}
+          </m.span>
           {i < words.length - 1 && " "}
-        </m.span>
+        </Fragment>
       ))}
     </m.span>
   );

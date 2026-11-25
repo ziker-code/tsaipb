@@ -9,11 +9,11 @@ import { PhotoHero } from "./motion/scroll";
 import heroBg from "@/assets/hero-bg.webp";
 
 /**
- * Wadah konten. Lebar maks 96rem (1536px) + padding 40px di desktop → di layar 1440px margin ±40px
+ * Wadah konten. Lebar maks 96rem (1536px) + padding 24px → di layar 1440px margin ±24px
  * per sisi, sesuai desain tim. `narrow` untuk halaman baca (artikel) agar baris nyaman dibaca.
  */
 export function Container({ className, children, narrow }: { className?: string; children: ReactNode; narrow?: boolean }) {
-  return <div className={cn("mx-auto w-full px-5 sm:px-8 lg:px-10", narrow ? "max-w-3xl" : "max-w-[96rem]", className)}>{children}</div>;
+  return <div className={cn("mx-auto w-full px-4 sm:px-6 lg:px-6", narrow ? "max-w-3xl" : "max-w-[96rem]", className)}>{children}</div>;
 }
 
 /** Hero halaman dalam: foto bersama TSA IPB + overlay gelap, menyusut ke kartu saat di-scroll. */
