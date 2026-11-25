@@ -15,6 +15,7 @@ const ICONS = [
   "create-outline", "trash-outline", "star", "eye-off-outline", "cloud-upload-outline", "image-outline",
   "shield-checkmark-outline", "rocket-outline", "people-outline", "bulb-outline", "heart-outline",
   "flame-outline", "leaf-outline", "send", "sync", "share-social-outline", "chatbubble-ellipses-outline",
+  "settings-outline", "logo-youtube",
 ];
 
 const out = {};

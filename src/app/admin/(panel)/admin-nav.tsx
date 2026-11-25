@@ -13,6 +13,7 @@ const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/admin/program", label: "Program Kerja", icon: "folder-outline" },
   { href: "/admin/galeri", label: "Galeri", icon: "images-outline" },
   { href: "/admin/cerita", label: "Cerita Mereka", icon: "chatbubble-ellipses-outline" },
+  { href: "/admin/pengaturan", label: "Pengaturan", icon: "settings-outline" },
 ];
 
 function NavLinks({ pathname }: { pathname: string }) {

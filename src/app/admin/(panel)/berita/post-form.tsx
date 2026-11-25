@@ -45,7 +45,7 @@ export function PostForm({ post }: { post?: Post }) {
           <Field label="Tanggal terbit" hint="Kosongkan = hari ini saat diterbitkan.">
             <input type="date" name="published_at" defaultValue={toDateInput(post?.published_at)} className={inputCls} />
           </Field>
-          <Field label="Kategori">
+          <Field label="Kategori" hint="Cerita Inspirasi tampil di Kisah Inspiratif. Berita & Publikasi tampil di Kabar Terbaru (Beranda). Semua tampil di halaman Berita & Blog.">
             <select name="category" defaultValue={post?.category ?? "Berita"} className={inputCls}>
               {POST_CATEGORIES.map((c) => (
                 <option key={c}>{c}</option>
