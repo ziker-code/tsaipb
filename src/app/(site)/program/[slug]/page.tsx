@@ -4,8 +4,8 @@ import { MediaImage } from "@/components/media-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icon";
+import { VideoEmbed } from "@/components/video-embed";
 import { getDivisions, getGallery, getProgram, getPrograms } from "@/lib/data";
-import { youtubeThumb } from "@/lib/format";
 import { Markdown } from "@/components/markdown";
 import { ProgramCard } from "@/components/cards";
 import { Container, SectionHeading } from "@/components/ui";
@@ -39,7 +39,6 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
   const division = divisions.find((d) => d.id === program.division_id);
   const photos = gallery.filter((g) => g.program_id === program.id);
   const related = programs.filter((p) => p.division_id === program.division_id && p.id !== program.id).slice(0, 3);
-  const thumb = youtubeThumb(program.youtube_url);
   const brand = brandOf(division?.slug);
 
   return (
@@ -49,7 +48,7 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
         <Image src={brand.logo} alt="" aria-hidden="true" width={260} height={260} className="pointer-events-none absolute -right-8 top-24 hidden h-64 w-auto object-contain opacity-90 drop-shadow-2xl md:block lg:right-16" />
         <Container className="relative">
           <Link href="/program" className="group inline-flex items-center gap-2 text-sm text-white/70 hover:text-white">
-            <Icon name="arrow-back" className="size-4 transition-transform group-hover:-translate-x-0.5" /> Semua program
+            <Icon name="arrow-back" className="size-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none" /> Semua program
           </Link>
           {division && (
             <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 py-1 pl-1 pr-3 text-xs text-white/85 backdrop-blur">
@@ -83,6 +82,9 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
                 <MediaImage src={program.cover_url} alt={program.title} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" priority />
               </div>
             )}
+            {program.youtube_url && (
+              <VideoEmbed url={program.youtube_url} title={`Video ${program.title}`} className="mb-10 rounded-[var(--radius-card)]" sizes="(min-width: 1024px) 66vw, 100vw" />
+            )}
             {program.content ? (
               <Markdown>{program.content}</Markdown>
             ) : (
@@ -104,21 +106,10 @@ export default async function ProgramDetailPage({ params }: PageProps<"/program/
           </div>
 
           <aside className="space-y-6">
-            {program.youtube_url && (
-              <a href={program.youtube_url} target="_blank" rel="noopener noreferrer" className="group relative block aspect-video overflow-hidden rounded-[var(--radius-card)] bg-brand-950">
-                {thumb && <Image src={thumb} alt="" fill sizes="320px" className="object-cover opacity-70 group-hover:opacity-90" />}
-                <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid size-14 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition duration-500 group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
-                    <Icon name="play" className="size-5" aria-hidden="true" />
-                  </span>
-                </span>
-                <span className="sr-only">Tonton video {program.title} di YouTube</span>
-              </a>
-            )}
             {division && (
               <div className="rounded-[var(--radius-card)] p-6" style={{ backgroundColor: brand.soft }}>
                 <Image src={brand.logo} alt="" width={48} height={48} className="size-10 object-contain" />
-                <p className="mt-4 text-xs uppercase tracking-[0.2em]" style={{ color: brand.color }}>Divisi</p>
+                <p className="mt-4 text-sm" style={{ color: brand.color }}>Divisi</p>
                 <p className="mt-1 text-lg font-medium text-brand-900">{division.name}</p>
                 <p className="mt-2 text-sm text-muted">{division.description}</p>
               </div>

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { MediaImage } from "@/components/media-image";
 import { getDivisions, getFeaturedPrograms, getGallery, getPosts, getSettings, getTestimonials } from "@/lib/data";
-import { youtubeThumb } from "@/lib/format";
 import { brandOf } from "@/lib/divisions";
 import { faqs } from "@/lib/faq";
 import { NewsFeature, NewsFeatureSkeleton, NewsRow, NewsRowSkeleton, ProgramTile, StoryCard, StorySkeleton } from "@/components/cards";
 import { TestimonialCarousel } from "@/components/home/testimonial-carousel";
 import { IndonesiaMap } from "@/components/home/indonesia-map";
 import { Icon } from "@/components/icon";
+import { VideoEmbed } from "@/components/video-embed";
 import { Accordion } from "@/components/motion/accordion";
 import { Carousel } from "@/components/motion/carousel";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
@@ -26,7 +26,6 @@ export default async function HomePage() {
     getGallery(),
   ]);
   const divisionById = new Map(divisions.map((d) => [d.id, d]));
-  const videoThumb = youtubeThumb(settings.profile_video_url);
   const stories = posts.filter((p) => p.category === "Cerita Inspirasi").slice(0, 8);
   const news = posts.filter((p) => p.category !== "Cerita Inspirasi").slice(0, 4);
   const [headline, ...moreNews] = news;
@@ -63,31 +62,18 @@ export default async function HomePage() {
       <section className="py-24 sm:py-32">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,58fr)_minmax(0,42fr)] lg:gap-16">
           <Reveal>
-            <a
-              href={settings.profile_video_url || undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-disabled={!settings.profile_video_url}
-              className="group relative block aspect-video overflow-hidden bg-brand-950 aria-disabled:pointer-events-none lg:rounded-r-[2rem] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
-            >
-              {videoThumb ? (
-                <Image src={videoThumb} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover opacity-70 transition-[opacity,transform] duration-700 motion-reduce:transition-none group-hover:scale-105 group-hover:opacity-90" />
-              ) : (
+            {settings.profile_video_url ? (
+              <VideoEmbed url={settings.profile_video_url} title="Tonton video profil kami" label="Profil TSA IPB" className="lg:rounded-r-[2rem]" />
+            ) : (
+              <div className="relative aspect-video overflow-hidden bg-brand-950 lg:rounded-r-[2rem]">
                 <Image src={heroBg} alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover opacity-40" />
-              )}
-              <span className="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-brand-950/20 to-transparent" />
-              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 text-white sm:p-10">
-                <span>
+                <span className="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-brand-950/20 to-transparent" />
+                <span className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
                   <span className="block text-sm text-white/70">Profil TSA IPB</span>
-                  <span className="mt-1 block text-2xl font-light sm:text-3xl">{settings.profile_video_url ? "Tonton video profil kami" : "Video profil segera hadir"}</span>
+                  <span className="mt-1 block text-2xl font-light sm:text-3xl">Video profil segera hadir</span>
                 </span>
-                {settings.profile_video_url && (
-                  <span className="grid size-16 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur transition-[transform,background-color,color] duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:bg-gold-300 group-hover:text-brand-950">
-                    <Icon name="play" className="ml-0.5 size-6" />
-                  </span>
-                )}
-              </span>
-            </a>
+              </div>
+            )}
           </Reveal>
           <div className="px-4 sm:px-6 lg:pl-0 lg:pr-6">
             <SectionHeading size="md" title="Kenali Lebih Dekat TSA IPB" />
@@ -136,7 +122,7 @@ export default async function HomePage() {
         <Container className="mt-10 flex justify-end">
           <ButtonLink href="/galeri" variant="ghost">
             Jelajahi Galeri
-            <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </ButtonLink>
         </Container>
       </section>
@@ -276,7 +262,7 @@ export default async function HomePage() {
                   <p className="text-sm leading-relaxed text-brand-950/75">Terbuka untuk kemitraan, sponsorship, media partner, dan program sosial bersama.</p>
                   <ButtonLink href="/kontak#form" className="mt-5 bg-brand-950 text-white hover:bg-brand-800">
                     Hubungi Kami
-                    <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    <Icon name="arrow-forward" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none" />
                   </ButtonLink>
                 </div>
               </div>

@@ -17,7 +17,7 @@ export function SettingsForm({ videoUrl }: { videoUrl: string }) {
         </span>
         <div>
           <h2 className="font-semibold text-brand-900">Video profil</h2>
-          <p className="text-sm text-muted">Tampil di section &ldquo;Kenali Lebih Dekat&rdquo; di Beranda. Diklik akan membuka YouTube.</p>
+          <p className="text-sm text-muted">Tampil di section &ldquo;Kenali Lebih Dekat&rdquo; di Beranda. Diputar langsung di website.</p>
         </div>
       </div>
       <Field label="Link YouTube" hint={'Contoh: https://youtu.be/abc123. Kosongkan untuk menampilkan "Video profil segera hadir".'}>

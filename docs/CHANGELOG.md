@@ -5,6 +5,8 @@ Sebelum mengerjakan update baru, baca entri teratas dan file detailnya supaya ko
 
 | Tanggal | Update | Status | Detail |
 |---|---|---|---|
+| 2026-11-25 | Video profil & video program diputar langsung di website (youtube-nocookie, dimuat saat diklik) + thumbnail HD | ✅ Live | [updates/2026-11-25-video-inline.md](updates/2026-11-25-video-inline.md) |
+| 2026-11-25 | Admin → Pengaturan (link video profil YouTube) + petunjuk kategori di form artikel | ✅ Live | commit `1a39ea6` |
 | 2026-11-25 | Integrasi ImageKit: upload admin, hapus file, CDN responsif, tombol migrasi gambar lama | ✅ Live (5 cover dimigrasi, kunci di-rotate) | [updates/2026-11-25-imagekit-integrasi.md](updates/2026-11-25-imagekit-integrasi.md) |
 | 2026-11-25 | Rencana: gambar via ImageKit (database tetap Supabase) + MCP ImageKit dipasang | 📝 Rencana, menunggu kunci API | [IMAGEKIT-PLAN.md](IMAGEKIT-PLAN.md) |
 | 2026-11-25 | v2.6: margin 24px, tab logo ukuran konstan, perbaikan spasi judul animasi (FAQ, visi) | ✅ Live | [updates/2026-11-25-v2.6-margin-logo-spasi.md](updates/2026-11-25-v2.6-margin-logo-spasi.md) |
